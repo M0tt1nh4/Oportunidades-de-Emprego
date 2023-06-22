@@ -5,6 +5,7 @@ public abstract class Vaga {
     protected int qtd;
     protected int carga;
     protected double salario;
+    protected Empresa emp;
 
     public String getFuncao() {
         return funcao;
@@ -32,5 +33,11 @@ public abstract class Vaga {
     }
     public void setSalario(double Salario) {
         salario = Salario;
+    }
+    public Empresa getEmpresa() {
+    	return emp;
+    }
+    public void setEmpresa(Empresa emp) {
+    	this.emp=emp;
     }
 }

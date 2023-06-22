@@ -59,6 +59,7 @@ public class Empresa {
     }
     public void setVagaExp(VagaExperiente vaga, int pos) {
         vagaExp[pos] = vaga;
+        vagaExp[pos].setEmpresa(this);
     }
 
     public VagaInexperiente getVagaInxp(int pos) {
@@ -66,6 +67,7 @@ public class Empresa {
     }
     public void setVagaInxp(VagaInexperiente vaga, int pos) {
         vagaInxp[pos] = vaga;
+        vagaInxp[pos].setEmpresa(this);
     }
 
     public int getQtdVagaExp() {
@@ -81,10 +83,22 @@ public class Empresa {
     public void setQtdVagaInxp(int qtdVagainxp) {
         qtdVagaInxp = qtdVagainxp;
     }
+    public int getQtdVagaTotal() {
+    	return qtdVagaExp + qtdVagaInxp;
+    }
 
     @Override
     public String toString() {
     	return "CNPJ: "+CNPJ+"\nNome: "+nome+"\nTelefone: "+telefone.getDDD()+" "+telefone.getNumero()+
     			"\nQuantidade de empregos oferecidos: "+(getQtdVagaExp()+getQtdVagaInxp());
+    }
+    @Override
+    public boolean equals(Object emp) {
+    	if(this.CNPJ == ((Empresa) emp).getCNPJ() && this.nome == ((Empresa) emp).getNome()  && this.telefone == ((Empresa) emp).getTelefone()) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 }
