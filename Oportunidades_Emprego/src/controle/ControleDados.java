@@ -81,7 +81,7 @@ public class ControleDados {
             return false;
         } else {
             Telefone newTel = new Telefone(Integer.parseInt(dados[3]), Integer.parseInt(dados[4]));
-            d.inserirEditarEmpresa(Integer.parseInt(dados[0]), Long.parseLong(dados[1]), dados[2], newTel);
+          //  d.inserirEditarEmpresa(Integer.parseInt(dados[0]), Long.parseLong(dados[1]), dados[2], newTel);
             return true;
         }
     }

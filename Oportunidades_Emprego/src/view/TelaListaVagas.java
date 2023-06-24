@@ -57,10 +57,33 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				janela.setVisible(true);
 				lista.addListSelectionListener(this);
 				break;
+			case 3:
+				pesq.setBounds(90, 5, 160, 15);
+				barra.setBounds(90, 20, 160, 25);
+				busca.setBounds(290, 20, 100, 25);
+				lista = new JList<String>(new ControleVagas(dados).getFuncVagas());
+				scroll= new JScrollPane(lista);
+				scroll.setBounds(90, 50, 300, 200);
+				
+		        janela.setLayout(null);
+				
+				janela.add(pesq);
+				janela.add(barra);
+				janela.add(busca);
+				janela.getContentPane().add(scroll);
+				
+				janela.setSize(500, 350);
+				janela.setVisible(true);
+				lista.addListSelectionListener(this);
+				
+				
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
-		
+		Object src = e.getSource();
+		if(src==busca) {
+			String conteudo = barra.getText();
+		}
 	}
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();

@@ -257,10 +257,10 @@ public class TelaInfoVaga implements ActionListener {
 					estagio1.setEnabled(editar);
 					estagio2.setEnabled(editar);
 				
-					funcao.setText(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getFuncao());
-					cargaHoraria.setText(String.valueOf(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getCarga()));
-					quantidade.setText(String.valueOf(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getQtd()));
-					salario.setText(String.valueOf(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getSalario()));
+					funcao.setText(vgs.getVagasInexperientes()[posi-vgs.getQtdExp()].getFuncao());
+                    cargaHoraria.setText(String.valueOf(vgs.getVagasInexperientes()[posi-vgs.getQtdExp()].getCarga()));
+                    quantidade.setText(String.valueOf(vgs.getVagasInexperientes()[posi-vgs.getQtdExp()].getQtd()));
+                    salario.setText(String.valueOf(vgs.getVagasInexperientes()[posi-vgs.getQtdExp()].getSalario()));
 					
 					janela.add(labelFuncao);
 					janela.add(labelCargahoraria);

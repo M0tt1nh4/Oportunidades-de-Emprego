@@ -1,5 +1,6 @@
 package controle;
 import modulo.*;
+import view.TelaListaVagas;
 public class ControleVagas {
     private Empresa emp;
     private VagaExperiente[] exp;
@@ -65,5 +66,26 @@ public class ControleVagas {
 			if(emp.equals(d.getEmpresa(i))) break;
 		}
 		return i;
+	}
+	public String[] qualVaga(String funcao) {
+		String [] a= new String[qtdVagas];
+		int x=0;
+		for(int i=0;i<qtdexp;i++) {
+			if(!funcao.isEmpty()) {
+			   if (exp[i].getFuncao()==funcao) {
+				   a[x]=funcao;
+				   x ++;
+			   }
+		    }
+	    }
+		for(int i=0;i<qtdinexp;i++) {
+			if(!funcao.isEmpty()) {
+				if(inexp[i].getFuncao()==funcao) {
+					a[x]=funcao;
+					x++;
+				}
+			}
+		}
+		return a;
 	}
 }
