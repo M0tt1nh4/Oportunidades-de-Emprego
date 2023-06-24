@@ -76,13 +76,56 @@ public class ControleDados {
         return qtdInxp;
     }
 
-    public boolean inserirEditarEmpresa(String[] dados) {
-        if (!dados[1].matches("[0-9]+") || !(dados[3].matches("[0-9]+") && dados[4].matches("[0-9]+"))) {
+    public boolean inserirEditarEmpresa(String[] novosDados) {
+        if (!novosDados[1].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || novosDados[4].matches("[0-9]+")) {
             return false;
         } else {
-            Telefone newTel = new Telefone(Integer.parseInt(dados[3]), Integer.parseInt(dados[4]));
-          //  d.inserirEditarEmpresa(Integer.parseInt(dados[0]), Long.parseLong(dados[1]), dados[2], newTel);
+            Telefone newTel = new Telefone(Integer.parseInt(novosDados[3]), Integer.parseInt(novosDados[4]));
+            Empresa emp = new Empresa(Long.parseLong(novosDados[0]), novosDados[2], newTel, 0, 0);
+            d.inserirEditarEmpresa(Integer.parseInt(novosDados[0]), emp);
             return true;
         }
     }
+
+    public boolean inserirEditarVaga(String[] novosDados, int posEmp, int op) {
+    	
+	    double dbl;
+	    try {
+	    	dbl = Double.parseDouble(novosDados[4]);
+	    } catch (NumberFormatException e){
+	    	return false;
+	    }
+	    
+	    if (op == 1) {
+	    	
+	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[5].matches("[0-9]+")) {
+    			return false;
+    		} else {
+    			
+    			VagaExperiente vg = new VagaExperiente(novosDados[1], Integer.parseInt(novosDados[2]), Integer.parseInt(novosDados[3]), dbl,
+    					Integer.parseInt(novosDados[5]), novosDados[6]);
+    			
+    			d.inserirEditarVagaExp(Integer.parseInt(novosDados[0]), posEmp, vg);
+    			
+    			return true;
+    		}
+    		
+	    } else {
+	    	
+	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+")) {
+    			return false;
+    		} else {
+
+        			VagaInexperiente vg = new VagaInexperiente(novosDados[1], Integer.parseInt(novosDados[2]), Integer.parseInt(novosDados[3]), dbl,
+        					Boolean.parseBoolean(novosDados[7]), Boolean.parseBoolean(novosDados[8]));
+        			
+        			d.inserirEditarVagaInxp(Integer.parseInt(novosDados[0]), posEmp, vg);
+        			
+        			return true;
+    		}
+	    	
+	    }
+	    	
+    }
+    
 }
