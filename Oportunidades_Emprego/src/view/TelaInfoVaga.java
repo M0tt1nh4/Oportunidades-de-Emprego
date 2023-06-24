@@ -26,52 +26,62 @@ public class TelaInfoVaga implements ActionListener {
 	private JLabel labelEstagio = new JLabel("Estágio: ");
 	private JRadioButton estagio1 = new JRadioButton("Sim");
 	private JRadioButton estagio2 = new JRadioButton("Não");
-	private JButton botaoEditar = new JButton("Editar");
+	private JButton botaoSalvar = new JButton("Salvar");
 	private ButtonGroup grupo1 = new ButtonGroup();
 	private ButtonGroup grupo2 = new ButtonGroup();	
-	private boolean editar=false;
+	private String[] novosDados = new String[9];
 	private static ControleDados dados;
-	private int posi , posEmp ;
+	private int posi; 
+	private int posEmp;
 	private int  opc;
 	
 	public void mostrarInfoVaga(int opc, ControleDados d , int posEmp, int posi) {
+		
 		dados = d;
 		this.posi = posi;
-		this.posEmp=posEmp;
-		this.opc=opc;
-		switch(opc) {
-			//vaga experiente
+		this.posEmp = posEmp;
+		this.opc = opc;
+		
+		if (posEmp == -1) {
+			
+			ControleVagas vgs = new ControleVagas(dados);
+			this.posEmp = vgs.getPosEmp(dados, posi);
+			this.posi = vgs.getPosVg(dados, this.posEmp, this.posi);
+			
+			if (posi < vgs.getQtdExp()) {
+				this.opc = 1;
+			} else this.opc = 2;
+		}
+		
+		switch(this.opc) {
+		
+			//Vaga experiente
 			case 1 : 
 				janela.setSize(500, 350);
 				janela.setLayout(null);
 				
 				labelFuncao.setBounds(100, 50, 150, 20);
-				funcao.setBounds(240, 50, 150, 20);
 				labelCargahoraria.setBounds(100, 80, 150, 20);
-				cargaHoraria.setBounds(240, 80, 150, 20);
 				labelQuantidade.setBounds(100, 110, 150, 20);
-				quantidade.setBounds(240, 110, 150, 20);
 				labelSalario.setBounds(100, 140, 150, 20);
-				salario.setBounds(240,140 , 150, 20);
 				labelAnosdeExp.setBounds(100, 170, 200, 20);
-				anosdeExp.setBounds(240, 170, 150, 20);
 				labelPreRequisitos.setBounds(100,200 ,200 , 20);
+				
+				funcao.setBounds(240, 50, 150, 20);
+				cargaHoraria.setBounds(240, 80, 150, 20);
+				quantidade.setBounds(240, 110, 150, 20);
+				salario.setBounds(240,140 , 150, 20);
+				anosdeExp.setBounds(240, 170, 150, 20);
 				preRequisitos.setBounds(240, 200, 150, 20);
-				botaoEditar.setBounds(180, 230,130 ,20);
 				
-				funcao.setEditable(editar);
-				cargaHoraria.setEditable(editar);
-				quantidade.setEditable(editar);
-				salario.setEditable(editar);
-				anosdeExp.setEditable(editar);
-				preRequisitos.setEditable(editar);
+				botaoSalvar.setBounds(180, 230, 130, 30);
 				
-				funcao.setText(dados.getEmpresa(posEmp).getVagaExp(posi).getFuncao());
-				cargaHoraria.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getCarga())));
-				quantidade.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getQtd())));
-				salario.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getSalario())));
-				anosdeExp.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getAnosdeExp())));
-				preRequisitos.setText(dados.getEmpresa(posEmp).getVagaExp(posi).getPrerequisito());
+				funcao.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getFuncao());
+				cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getCarga())));
+				quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getQtd())));
+				salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getSalario())));
+				anosdeExp.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getAnosdeExp())));
+				preRequisitos.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getPrerequisito());
 				
 				janela.add(labelFuncao);
 				janela.add(labelCargahoraria);
@@ -85,61 +95,71 @@ public class TelaInfoVaga implements ActionListener {
 				janela.add(salario);
 				janela.add(anosdeExp);
 				janela.add(preRequisitos);
-				janela.add(botaoEditar);
+				janela.add(botaoSalvar);
 				
 				
 				janela.setVisible(true);
 				
-				botaoEditar.addActionListener(this);
+				botaoSalvar.addActionListener(this);
+				
 				break;
-			//vaga inexperiente
+				
+			//Vaga inexperiente
 			case 2:
+				
 				janela.setSize(500, 350);
 				janela.setLayout(null);
 				
 				labelFuncao.setBounds(100, 50, 150, 20);
-				funcao.setBounds(240, 50, 150, 20);
 				labelCargahoraria.setBounds(100, 80, 150, 20);
-				cargaHoraria.setBounds(240, 80, 150, 20);
 				labelQuantidade.setBounds(100, 110, 150, 20);
-				quantidade.setBounds(240, 110, 150, 20);
 				labelSalario.setBounds(100, 140, 150, 20);
-				salario.setBounds(240,140 , 150, 20);
 				labelRemunerado.setBounds(100, 170, 200, 20);
+				labelEstagio.setBounds(100,200 ,200 , 20);
+				
+				salario.setBounds(240,140 , 150, 20);
+				quantidade.setBounds(240, 110, 150, 20);
+				cargaHoraria.setBounds(240, 80, 150, 20);
+				funcao.setBounds(240, 50, 150, 20);
+				
 				remunerado1.setBounds(240, 170, 60, 20);
 				remunerado2.setBounds(310, 170, 60, 20);
+				
 				grupo1.add(remunerado1);
 				grupo1.add(remunerado2);
-				labelEstagio.setBounds(100,200 ,200 , 20);
+				
 				estagio1.setBounds(240, 200, 60, 20);
 				estagio2.setBounds(310, 200, 60, 20);
+				
 				grupo2.add(estagio1);
 				grupo2.add(estagio2);
-				botaoEditar.setBounds(160, 230,130 , 20);
 				
-				funcao.setEditable(editar);
-				cargaHoraria.setEditable(editar);
-				quantidade.setEditable(editar);
-				salario.setEditable(editar);
-			    if((dados.getEmpresa(posEmp).getVagaInxp(posi).getRemunerado())) {
+				botaoSalvar.setBounds(180, 230, 130, 30);
+				
+			    if (dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getRemunerado()) {
+			    	
 			    	remunerado1.setSelected(true);
-			    }else {
+			    	
+			    } else {
+			    	
 			    	remunerado2.setSelected(true);
+			    	
 			    }
-				remunerado1.setEnabled(editar);
-				remunerado2.setEnabled(editar);
-				 if((dados.getEmpresa(posEmp).getVagaInxp(posi).getEstagio())) {
+			    
+				 if(dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getEstagio()) {
+					 
 				    	estagio1.setSelected(true);
-				    }else {
+				    	
+				    } else {
+				    	
 				    	estagio2.setSelected(true);
+				    	
 				    }
-				estagio1.setEnabled(editar);
-				estagio2.setEnabled(editar);
-			
-				funcao.setText(dados.getEmpresa(posEmp).getVagaExp(posi).getFuncao());
-				cargaHoraria.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getCarga())));
-				quantidade.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getQtd())));
-				salario.setText(String.valueOf((dados.getEmpresa(posEmp).getVagaExp(posi).getSalario())));
+				 
+				funcao.setText(dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getFuncao());
+				cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getCarga())));
+				quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getQtd())));
+				salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getSalario())));
 				
 				janela.add(labelFuncao);
 				janela.add(labelCargahoraria);
@@ -155,143 +175,78 @@ public class TelaInfoVaga implements ActionListener {
 				janela.add(remunerado2);
 				janela.add(estagio1);
 				janela.add(estagio2);
-				janela.add(botaoEditar);
+				janela.add(botaoSalvar);
 				
 				janela.setVisible(true);
 				
-				botaoEditar.addActionListener(this);
-				break;
-			case 3:
-				ControleVagas vgs=new ControleVagas(dados);
-				if(posi<vgs.getQtdExp()) {
-					janela.setSize(500, 350);
-					janela.setLayout(null);
-					
-					labelFuncao.setBounds(100, 50, 150, 20);
-					funcao.setBounds(240, 50, 150, 20);
-					labelCargahoraria.setBounds(100, 80, 150, 20);
-					cargaHoraria.setBounds(240, 80, 150, 20);
-					labelQuantidade.setBounds(100, 110, 150, 20);
-					quantidade.setBounds(240, 110, 150, 20);
-					labelSalario.setBounds(100, 140, 150, 20);
-					salario.setBounds(240,140 , 150, 20);
-					labelAnosdeExp.setBounds(100, 170, 200, 20);
-					anosdeExp.setBounds(240, 170, 150, 20);
-					labelPreRequisitos.setBounds(100,200 ,200 , 20);
-					preRequisitos.setBounds(240, 200, 150, 20);
-					botaoEditar.setBounds(180, 230,130 , 20);
-					
-					funcao.setEditable(editar);
-					cargaHoraria.setEditable(editar);
-					quantidade.setEditable(editar);
-					salario.setEditable(editar);
-					anosdeExp.setEditable(editar);
-					preRequisitos.setEditable(editar);
-					
-					funcao.setText(vgs.getVagasExperientes()[posi].getFuncao());
-					cargaHoraria.setText(String.valueOf(vgs.getVagasExperientes()[posi].getCarga()));
-					quantidade.setText(String.valueOf(vgs.getVagasExperientes()[posi].getQtd()));
-					salario.setText(String.valueOf(vgs.getVagasExperientes()[posi].getSalario()));
-					anosdeExp.setText(String.valueOf(vgs.getVagasExperientes()[posi].getAnosdeExp()));
-					preRequisitos.setText(vgs.getVagasExperientes()[posi].getPrerequisito());
-					
-					janela.add(labelFuncao);
-					janela.add(labelCargahoraria);
-					janela.add(labelQuantidade);
-					janela.add(labelSalario);
-					janela.add(labelAnosdeExp);
-					janela.add(labelPreRequisitos);
-					janela.add(funcao);
-					janela.add(cargaHoraria);
-					janela.add(quantidade);
-					janela.add(salario);
-					janela.add(anosdeExp);
-					janela.add(preRequisitos);
-					janela.add(botaoEditar);
-					
-					
-					janela.setVisible(true);
-					
-					botaoEditar.addActionListener(this);
-				}
-				else {
-					janela.setSize(500, 350);
-					janela.setLayout(null);
-					
-					labelFuncao.setBounds(100, 50, 150, 20);
-					funcao.setBounds(240, 50, 150, 20);
-					labelCargahoraria.setBounds(100, 80, 150, 20);
-					cargaHoraria.setBounds(240, 80, 150, 20);
-					labelQuantidade.setBounds(100, 110, 150, 20);
-					quantidade.setBounds(240, 110, 150, 20);
-					labelSalario.setBounds(100, 140, 150, 20);
-					salario.setBounds(240,140 , 150, 20);
-					labelRemunerado.setBounds(100, 170, 200, 20);
-					remunerado1.setBounds(240, 170, 60, 20);
-					remunerado2.setBounds(310, 170, 60, 20);
-					grupo1.add(remunerado1);
-					grupo1.add(remunerado2);
-					labelEstagio.setBounds(100,200 ,200 , 20);
-					estagio1.setBounds(240, 200, 60, 20);
-					estagio2.setBounds(310, 200, 60, 20);
-					grupo2.add(estagio1);
-					grupo2.add(estagio2);
-					botaoEditar.setBounds(160, 230,130 , 20);
-					
-					funcao.setEditable(editar);
-					cargaHoraria.setEditable(editar);
-					quantidade.setEditable(editar);
-					salario.setEditable(editar);
-				    if(vgs.getVagasInexperientes()[posi-vgs.getQtdExp()].getRemunerado()) {
-				    	remunerado1.setSelected(true);
-				    }else {
-				    	remunerado2.setSelected(true);
-				    }
-					remunerado1.setEnabled(editar);
-					remunerado2.setEnabled(editar);
-					 if(vgs.getVagasInexperientes()[posi-vgs.getQtdExp()].getEstagio()) {
-					    	estagio1.setSelected(true);
-					    }else {
-					    	estagio2.setSelected(true);
-					    }
-					estagio1.setEnabled(editar);
-					estagio2.setEnabled(editar);
+				botaoSalvar.addActionListener(this);
 				
-					funcao.setText(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getFuncao());
-					cargaHoraria.setText(String.valueOf(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getCarga()));
-					quantidade.setText(String.valueOf(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getQtd()));
-					salario.setText(String.valueOf(vgs.getVagasExperientes()[posi-vgs.getQtdExp()].getSalario()));
-					
-					janela.add(labelFuncao);
-					janela.add(labelCargahoraria);
-					janela.add(labelQuantidade);
-					janela.add(labelSalario);
-					janela.add(labelRemunerado);
-					janela.add(labelEstagio);
-					janela.add(funcao);
-					janela.add(cargaHoraria);
-					janela.add(quantidade);
-					janela.add(salario);
-					janela.add(remunerado1);
-					janela.add(remunerado2);
-					janela.add(estagio1);
-					janela.add(estagio2);
-					janela.add(botaoEditar);
-					
-					janela.setVisible(true);
-					
-					botaoEditar.addActionListener(this);
-				}
+				break;
+				
+			default: 
+				JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
+						JOptionPane.ERROR_MESSAGE);
+		
 		}
-		
-		
 	}
+		
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
-		if(src==botaoEditar) {
-			editar=true;
-			mostrarInfoVaga(opc, dados , posEmp, posi);
+		
+		if (src == botaoSalvar) {
+			
+			try {
+
+				boolean save;
+				
+				novosDados[0] = Integer.toString(posi);
+				novosDados[1] = funcao.getText();
+				novosDados[2] = cargaHoraria.getText();
+				novosDados[3] = quantidade.getText();
+				novosDados[4] = salario.getText();
+				
+				if (opc == 1) {
+					
+					novosDados[5] = anosdeExp.getText();
+					novosDados[6] = preRequisitos.getText();
+					
+				} else {
+					
+					if (remunerado1.isSelected()) {
+						
+						novosDados[7] = "true";
+						
+					} else novosDados[7] = "false";
+					
+					if (estagio1.isSelected()) {
+						
+						novosDados[8] = "true";
+						
+					} else novosDados[8] = "false";
+					
+				}
+				
+				save = dados.inserirEditarVaga(novosDados, posEmp, opc);
+				
+				if (save) {
+					
+					mensagemSucessoCadastro();
+					
+				}
+				
+			} catch (NullPointerException exc1) {
+				
+			} catch (NumberFormatException exc2) {
+				
+			}
+			
 		}
+	}
+	
+	public void mensagemSucessoCadastro() {
+		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null,
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
 	}
 	
 

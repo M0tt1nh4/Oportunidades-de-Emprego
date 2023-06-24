@@ -8,7 +8,7 @@ public class VagaInexperiente extends Vaga{
         super();
     }
 
-    public VagaInexperiente(String funcao, int qtd, int carga, double salario, boolean estagio, boolean remunerado){
+    public VagaInexperiente(String funcao, int carga, int qtd, double salario, boolean remunerado, boolean estagio){
         this.funcao = funcao;
         this.qtd = qtd;
         this.carga = carga;

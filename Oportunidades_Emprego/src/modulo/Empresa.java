@@ -94,7 +94,7 @@ public class Empresa {
     }
     @Override
     public boolean equals(Object emp) {
-    	if(this.CNPJ == ((Empresa) emp).getCNPJ() && this.nome == ((Empresa) emp).getNome()  && this.telefone == ((Empresa) emp).getTelefone()) {
+    	if (this.CNPJ == ((Empresa) emp).getCNPJ() && this.nome == ((Empresa) emp).getNome()  && this.telefone == ((Empresa) emp).getTelefone()) {
     		return true;
     	}
     	else {

@@ -40,4 +40,14 @@ public abstract class Vaga {
     public void setEmpresa(Empresa emp) {
     	this.emp=emp;
     }
+    
+    public boolean equals(Object vg) {
+    	if (this.funcao == ((Vaga) vg).getFuncao() && this.qtd == ((Vaga) vg).getQtd()  && this.carga == ((Vaga) vg).getCarga() &&
+    			this.salario == ((Vaga) vg).getSalario() && this.emp == ((Vaga) vg).getEmpresa()) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
 }

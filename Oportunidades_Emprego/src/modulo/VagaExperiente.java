@@ -9,7 +9,7 @@ public class VagaExperiente extends Vaga{
         super();
     }
 
-    public VagaExperiente(String funcao, int qtd, int carga, double salario, int anos, String Prerequisito){
+    public VagaExperiente(String funcao, int carga, int qtd, double salario, int anos, String Prerequisito){
         this.funcao = funcao;
         this.qtd = qtd;
         this.carga = carga;

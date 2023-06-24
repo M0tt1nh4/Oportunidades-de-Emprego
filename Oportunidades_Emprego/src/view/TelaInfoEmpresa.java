@@ -20,9 +20,10 @@ public class TelaInfoEmpresa implements ActionListener {
 	private static ControleDados dados;
 	private int posi;
 	private boolean editar=false;
+	
 	public void mostrarInfoEmpresa(ControleDados d , int posi) {
 		dados = d;
-		this.posi=posi;
+		this.posi = posi;
 		
 		janela.setSize(500, 350);
 		janela.setLayout(null);
@@ -69,14 +70,20 @@ public class TelaInfoEmpresa implements ActionListener {
 		
 		botaoEditar.addActionListener(this);
 		botaoVagas.addActionListener(this);
+		
 	}
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
+		
 		if(src==botaoEditar){
+			
 			editar=true;
 			mostrarInfoEmpresa( dados ,  posi);
-		}else if(src==botaoVagas){
+			
+		}else if(src == botaoVagas){
+			
 			new TelaListaVagas().mostrarVagas(dados,1,posi);
+			
 		}
 	}
 }

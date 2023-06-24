@@ -13,10 +13,12 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	private JScrollPane scroll ;
 	private JButton busca = new JButton("Buscar");
 	public void mostrarEmpresas(ControleDados d) {
-		dados =d;
+		
+		dados = d;
 		pesq.setBounds(90, 5, 160, 15);
 		barra.setBounds(90, 20, 160, 25);
 		busca.setBounds(290, 20, 100, 25);
+		
 		lista = new JList<String>(new ControleEmpresa(dados).getNomeEmpresas());
 		scroll= new JScrollPane(lista);
 		scroll.setBounds(90, 50, 300, 200);
@@ -31,18 +33,26 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		janela.setSize(500, 350);
 		janela.setVisible(true);
 		lista.addListSelectionListener(this);
+		
 	}
 	public void actionPerformed(ActionEvent e) {
 		
 	}
+	
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
+		
 		if(src==lista && e.getValueIsAdjusting()) {
+			
 			int posi=lista.getSelectedIndex();
+			
 			if(posi!=-1) {
+				
 				new TelaInfoEmpresa().mostrarInfoEmpresa(dados,posi);
+				
 	    	}
-			}
+			
+		}
 
 	}
 
