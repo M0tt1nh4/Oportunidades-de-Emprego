@@ -4,12 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Classe da Tela Menu
+ * @author Felipe Motta ,Giovana Barbosa 
+ * @since 2023
+ * @version 1.1
+ * @see titulo	   titulo que vai aparecer na tela 
+ */
+
 public class TelaMenu implements ActionListener {
 	private static JFrame janela = new JFrame("Oportunidades de Emprego");
 	private static JLabel titulo = new JLabel("Menu Principal");
 	private static JButton empresas = new JButton("Empresas");
 	private static JButton vagas = new JButton("Vagas");
 	private static ControleDados dados = new ControleDados();
+	
+	/**
+	 * Método do que vai aparecer na tela
+	 */
 	
 	public TelaMenu() {
 		
@@ -30,6 +42,11 @@ public class TelaMenu implements ActionListener {
 		
 	}
 	
+	/**
+	 * Método que monstra na tela menu os botões
+	 * @param args 
+	 */
+	
 	public static void main(String[] args) {
 		TelaMenu menu = new TelaMenu();
 		
@@ -37,6 +54,10 @@ public class TelaMenu implements ActionListener {
 		vagas.addActionListener(menu);
 		
 	}
+	 
+	/**
+	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
+	 */
 	
     public void actionPerformed(ActionEvent e) {
     	Object src = e.getSource();

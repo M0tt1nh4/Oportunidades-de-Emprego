@@ -5,6 +5,20 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import controle.*;
 
+/**
+ * Classe da Tela Informações de Vaga
+ * @author Felipe Motta ,Giovana Barbosa 
+ * @since 2023
+ * @version 1.1
+ * @see funcao	   		 função das vagas
+ * @see cargaHoraria	 Carga horária da vaga
+ * @see qtd		   		 quantidade de vagas
+ * @see salario	   		 Salario de uma vaga 
+ * @see anosdeExp		 Anos de Experiência que a vaga pede
+ * @see preRequisitos	 Pré Requisito da vaga
+ * @see remunerado		 Se a vaga é remunerada ou não
+ * @see estagio			 Se a vaga é estágio ou não
+ */
 
 public class TelaInfoVaga implements ActionListener {
 	private JFrame janela = new JFrame("Informação de Vaga");
@@ -34,6 +48,14 @@ public class TelaInfoVaga implements ActionListener {
 	private int posi; 
 	private int posEmp;
 	private int  opc;
+	
+	/**
+	 * Método que monstra a tela Info Vaga 
+	 * @param opc		de que tela o usuário está vindo
+	 * @param d			dados da Controle Dados
+	 * @param posEmp	posição da empresa
+	 * @param posi		posição da vaga
+	 */
 	
 	public void mostrarInfoVaga(int opc, ControleDados d , int posEmp, int posi) {
 		
@@ -189,10 +211,15 @@ public class TelaInfoVaga implements ActionListener {
 		
 		}
 	}
+	
+	/**
+	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
+	 */
 		
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
+		//botão que salva novos dados
 		if (src == botaoSalvar) {
 			
 			try {
@@ -243,6 +270,9 @@ public class TelaInfoVaga implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Método que monstra uma mensagem de Suceesso se os dados forem salvos 
+	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null,
 				JOptionPane.INFORMATION_MESSAGE);

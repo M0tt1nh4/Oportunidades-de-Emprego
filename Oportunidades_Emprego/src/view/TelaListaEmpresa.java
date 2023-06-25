@@ -4,6 +4,15 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 
+/**
+ * Classe da Tela Listagem Empresas
+ * @author Felipe Motta ,Giovana Barbosa 
+ * @since 2023
+ * @version 1.1
+ * @see pesq 	pesquisa da empresa
+ * @see lista	listagem das empresas
+ */
+
 public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Lista de Empresas");
 	private JLabel pesq = new JLabel("Pesquisar Empresa");
@@ -12,6 +21,12 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	private static ControleDados dados;
 	private JScrollPane scroll ;
 	private JButton busca = new JButton("Buscar");
+	
+	/**
+	 * Método que monstra as empresas na tela
+	 * @param d   dados do Controle Dados
+	 */
+	
 	public void mostrarEmpresas(ControleDados d) {
 		
 		dados = d;
@@ -19,6 +34,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		barra.setBounds(90, 20, 160, 25);
 		busca.setBounds(290, 20, 100, 25);
 		
+		//monstra a listagem das empresas
 		lista = new JList<String>(new ControleEmpresa(dados).getNomeEmpresas());
 		scroll= new JScrollPane(lista);
 		scroll.setBounds(90, 50, 300, 200);
@@ -35,10 +51,17 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		lista.addListSelectionListener(this);
 		
 	}
+	/**
+	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
+	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		
 	}
 	
+	/**
+	 * Método que monstra em qual empresa da lista o usuário clicou e o que vai acontecer na tela
+	 */
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		

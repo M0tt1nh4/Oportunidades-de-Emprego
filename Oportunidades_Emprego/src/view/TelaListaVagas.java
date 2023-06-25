@@ -4,6 +4,15 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.awt.event.*;
 
+/**
+ * Classe da Tela Listagem de Vagas
+ * @author Felipe Motta ,Giovana Barbosa 
+ * @since 2023
+ * @version 1.1
+ * @see pesq 	pesquisa da vaga
+ * @see lista	listagem das vagas
+ */
+
 public class TelaListaVagas implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Lista de Vagas");
 	private JLabel pesq = new JLabel("Pesquisar Vagas");
@@ -16,12 +25,20 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 	private int op;
 	private int posEmp;
 	
+	/**
+	 * Método que monstra as vagas na tela
+	 * @param d		dados do Controle Dados
+	 * @param opc	de onde na tela vai monstrar as vagas
+	 * @param posi	posição da vaga
+	 */
+	
 	public void mostrarVagas(ControleDados d,int opc,int posi) {
 		
 		dados = d;
 		op = opc;
 		posEmp = posi;
 		
+		//monstra de onde na tela vem o monstrar vagas
 		switch (op) {
 			case 1:
 				
@@ -75,31 +92,6 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				refresh.addActionListener(this);
 				
 				break;
-			case 3:
-				pesq.setBounds(90, 5, 160, 15);
-				barra.setBounds(90, 20, 160, 25);
-				busca.setBounds(290, 20, 100, 25);
-				refresh.setBounds(180 ,260, 100, 30);
-				
-				lista = new JList<String>(new ControleVagas(dados).getFuncVagas());
-				scroll= new JScrollPane(lista);
-				scroll.setBounds(90, 50, 300, 200);
-				
-		        janela.setLayout(null);
-				
-				janela.add(pesq);
-				janela.add(barra);
-				janela.add(busca);
-				janela.add(refresh);
-				janela.getContentPane().add(scroll);
-				
-				janela.setSize(500, 350);
-				janela.setVisible(true);
-				
-				lista.addListSelectionListener(this);
-				refresh.addActionListener(this);
-				
-				break;
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -122,6 +114,11 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 		}
 		
 	}
+	
+	/**
+	 * Método que monstra em qual vaga da lista o usuário clicou e o que vai acontecer na tela
+	 */
+	
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		

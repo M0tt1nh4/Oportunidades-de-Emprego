@@ -1,5 +1,18 @@
 package controle;
 import modulo.*;
+
+/**
+ * @author Felipe Motta ,Giovana Barbosa 
+ * @since 2023
+ * @version 1.1
+ * @see empresa				empresa da vaga
+ * @see vagaExperiente		vagas experientes da empresa
+ * @see vagaInexperiente	vagas inexperientes da empresa
+ * @see qtdexp				quantidade de vagas experientes na empresa
+ * @see qtdinexp			quantidade de vagas inexperientes na empresa
+ * @see qtdVagas			quantidade totais de vagas na empresa
+ */
+
 public class ControleVagas {
     private Empresa emp;
     private VagaExperiente[] exp;
@@ -8,6 +21,11 @@ public class ControleVagas {
     private int qtdinexp;
     private int qtdVagas;
     
+    /**
+     * Método que Controla as Vagas
+     * @param d    pegam os dados da Controle Dados
+     */
+    
 	public ControleVagas(ControleDados d) {
 		exp = d.getVagasExp();
 		inexp = d.getVagasInxp();
@@ -15,6 +33,12 @@ public class ControleVagas {
 		qtdinexp = d.getQtdInxp();
 		qtdVagas = d.getQtdVagas();
 	}
+	
+	/**
+	 * Método que Controla as Vagas pela sua posição
+	 * @param d			dados do Controle Dados
+	 * @param posi		posição das vagas
+	 */
 	
 	public ControleVagas(ControleDados d,int posi) {
 		emp = d.getEmpresa(posi);
@@ -25,26 +49,32 @@ public class ControleVagas {
 		qtdVagas = d.getEmpresa(posi).getQtdVagaTotal();
 	}
 	
+	//get vaga experientes
 	public VagaExperiente[] getVagasExperientes() {
 		return exp;
 	}
 	
+	//get vagas inexperientes
 	public VagaInexperiente[] getVagasInexperientes() {
 		return inexp;
 	}
 	
+	//get quantidade de vagas experientes  
 	public int getQtdExp() {
 		return qtdexp;
 	}
 	
+	//quantidade de vagas inexperientes 
 	public int getQtdInexp() {
 		return qtdinexp;
 	}
 	
+	//get nome da empresa
 	public String getNomeEmp() {
 		return emp.getNome();
 	}
 	
+	//get função da vaga
 	public String[] getFuncVagas(){
 		String[] a = new String[qtdVagas];
 		int x = 0;
@@ -62,6 +92,7 @@ public class ControleVagas {
 		return a;
 	}
 	
+	//get empresa da vaga  
 	public Empresa getEmpresaVaga(int pos) {
 		
 		if(pos<qtdexp) {
@@ -73,6 +104,7 @@ public class ControleVagas {
 		
 	}
 	
+	//get posição da empresa
 	public int getPosEmp(ControleDados d, int pos) {
 		Empresa emp = getEmpresaVaga(pos);
 		
@@ -83,6 +115,7 @@ public class ControleVagas {
 		return -1;
 	}
 	
+	//get posição da vaga
 	public int getPosVg(ControleDados d, int posEmp, int posVgTotal) {
 		
 		if (posVgTotal < qtdexp) {
@@ -102,6 +135,11 @@ public class ControleVagas {
 		return -1;
 	}
 	
+	/**
+	 * Método que busca as vagas 
+	 * @param funcao	função é a vaga que o usuário pesquisou
+	 * @return String
+	 */
 	public String[] buscaVaga(String funcao) {
         String [] a = new String[qtdVagas];
         int x = 0;

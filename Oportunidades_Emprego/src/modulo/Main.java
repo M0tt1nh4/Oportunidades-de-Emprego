@@ -2,6 +2,14 @@ package modulo;
 
 import java.util.Scanner;
 
+/**
+ * Classe Main classe de entrada para o programa, onde os dados iniciais são cadastrados.
+ * @author Felipe Motta ,Giovana Barbosa 
+ * @since 2023
+ * @version 1.1
+ * @see dados 		variável para conter os dados 
+ * @see Empresa 	vetor empresa
+ */
 public class Main {
 
 	public static void main(String[] args) {

@@ -5,13 +5,13 @@ package modulo;
  * @author Felipe Motta ,Giovana Barbosa 
  * @since 2023
  * @version 1.1
- * @see CNPJ
- * @see nome
- * @see telefone
- * @see vagaExp
- * @see vagaInxp
- * @see qtdVagaExp
- * @see qtdVagaInxp
+ * @see CNPJ			CNPJ da empresa
+ * @see nome			Nome da empresa
+ * @see telefone		Telefone da empresa
+ * @see vagaExp			Vagas Experientes da empresa
+ * @see vagaInxp		Vagas Inexperientes da empresa
+ * @see qtdVagaExp		Quantidade de vagas experientes da empresa
+ * @see qtdVagaInxp		Quantidade de vagas inexperientes da empresa
  */
 
 public class Empresa {
@@ -128,12 +128,21 @@ public class Empresa {
     	return qtdVagaExp + qtdVagaInxp;
     }
 
-    //toString que guarda as informações da empresa.
+    /**
+     * Método toString() da classe Empresa. Constroi uma String contendo o valor de todas as váriaveis da classe Empresa.
+     * @return String
+     */
+    
     @Override
     public String toString() {
     	return "CNPJ: "+CNPJ+"\nNome: "+nome+"\nTelefone: "+telefone.getDDD()+" "+telefone.getNumero()+
     			"\nQuantidade de empregos oferecidos: "+(getQtdVagaExp()+getQtdVagaInxp());
     }
+    
+    /**
+     * Método que retorna true se o objeto Empresa existir, se não existir retorna false, para Empresa existir precisa ter CNPJ, nome e telefone
+     * @return boolean
+     */
     
     @Override
     public boolean equals(Object emp) {

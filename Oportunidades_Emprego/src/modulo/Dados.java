@@ -1,12 +1,12 @@
 package modulo;
 
 /**
- * Classe Dados simula o pre cadastro de Empresa e das vagas disponiveis.
+ * Classe Dados simula o pré cadastro de Empresa e das vagas disponiveis.
  * @author Felipe Motta ,Giovana Barbosa 
  * @since 2023
  * @version 1.0
- * @see Empresa
- * @see qtdEmpresas
+ * @see Empresa			Vetor que cria 50 empresas.
+ * @see qtdEmpresas		Inteiro que monstra a quantidade de empresa
  */
 public class Dados {
 	//cria um vetor que pode ter 50 empresas.
@@ -14,7 +14,11 @@ public class Dados {
 	private Empresa[] empresas = new Empresa[50];
     int qtdEmpresas = 0;
     
-    //função que cria um pre cadastro de empresas e de vagas.
+    /**
+     * Método que cria empresa e suas vagas experientes e inexperientes.
+     * @see VagaExperiente		Cria as vagas experiente da empresa
+     * @see VagaInexperiente	Cria as vagas inexperientes da empresa
+     */
     
     public void fillWithSomeData() {
         for (int i = 0; i < 5; i++) {
@@ -105,7 +109,7 @@ public class Dados {
     	return vgs;
     }
     
-    //get para salvar a quantidade de Vagas Experientes de acordo com sua posicao.
+    //get para salvar a quantidade de Vagas Experientes de acordo com sua posição.
     
     public VagaExperiente[] getVagasExp(int pos) {
     	VagaExperiente[] vgs = new VagaExperiente[50];
@@ -122,7 +126,7 @@ public class Dados {
     	return vgs;
     }
     
-    //get para salvar a quantidade de Vagas Inexperientes de acordo co sua posicao.
+    //get para salvar a quantidade de Vagas Inexperientes de acordo com sua posição.
     
     public VagaInexperiente[] getVagasInxp(int pos) {
     	VagaInexperiente[] vgs = new VagaInexperiente[50];
@@ -139,10 +143,23 @@ public class Dados {
     	return vgs;
     }
     
+    /**
+     * Método que edita uma empresa.
+     * @param pos  posição da empresa
+     * @param emp  qual empresa estamos editando
+     */
+    
     public void inserirEditarEmpresa(int pos, Empresa emp) {
     	
     	if (pos == qtdEmpresas) qtdEmpresas++;
     }
+    
+    /**
+     * Método que edita Vaga Experiente.
+     * @param posVaga	posição da vaga experiente
+     * @param posEmp	posição da empresa
+     * @param vg		vaga nova editada
+     */
     
     public void inserirEditarVagaExp(int posVaga, int posEmp, VagaExperiente vg) {
     	empresas[posEmp].setVagaExp(vg, posVaga);
@@ -150,6 +167,12 @@ public class Dados {
     	if (posVaga == empresas[posEmp].getQtdVagaExp()) empresas[posEmp].setQtdVagaExp(posVaga+1);
     }
     
+    /**
+     * Método que edita Vaga Inexperiente.
+     * @param posVaga		posição da vaga inexperiente
+     * @param posEmp		posição da empresa
+     * @param vg			vaga nova editada
+     */
     public void inserirEditarVagaInxp(int posVaga, int posEmp, VagaInexperiente vg) {
     	empresas[posEmp].setVagaInxp(vg, posVaga);
     	
