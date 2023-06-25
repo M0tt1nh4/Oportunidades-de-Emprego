@@ -144,29 +144,22 @@ public class ControleVagas {
         String [] a = new String[qtdVagas];
         int x = 0;
         
-        for (int i = 0; i < qtdexp; i++) {
-            if (!funcao.isEmpty()) {
-            	
-               if (exp[i].getFuncao() == funcao) {
+        for (int i = 0; i < qtdexp; i++) {	
+               if (exp[i].getFuncao().equals(funcao)) {
                    a[x]=funcao;
-                   x ++;
+                   x++;
                }
                
             }
-            
-        }
+          
         for (int i = 0; i < qtdinexp; i++) {
-            if(!funcao.isEmpty()) {
-            	
-                if(inexp[i].getFuncao() == funcao) {
+                if(inexp[i].getFuncao().equals(funcao)) {
                     a[x]=funcao;
                     x++;
                 }
                 
             }
-            
-        }
-        
+           
         return a;
     }
 	

@@ -64,6 +64,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				
 				lista.addListSelectionListener(this);
 				refresh.addActionListener(this);
+				busca.addActionListener(this);
 				
 				break;
 				
@@ -90,6 +91,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				
 				lista.addListSelectionListener(this);
 				refresh.addActionListener(this);
+				busca.addActionListener(this);
 				
 				break;
 		}
@@ -97,6 +99,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
+		//atualiza lista
 		if (src == refresh) {
 			
 			if (op == 1) {
@@ -111,6 +114,12 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				
 			}
 			
+		}
+		//busca na lista
+		if(src ==busca) {
+			lista.setListData(new ControleVagas(dados).buscaVaga(barra.getText()));
+			//recarrega lista
+			lista.updateUI();
 		}
 		
 	}
