@@ -151,7 +151,9 @@ public class Dados {
     
     public void inserirEditarEmpresa(int pos, Empresa emp) {
     	
+    	empresas[pos] = emp;
     	if (pos == qtdEmpresas) qtdEmpresas++;
+    	
     }
     
     /**

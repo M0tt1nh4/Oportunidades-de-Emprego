@@ -21,6 +21,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	private static ControleDados dados;
 	private JScrollPane scroll ;
 	private JButton busca = new JButton("Buscar");
+	private JButton refresh = new JButton("Atualizar");
 	
 	/**
 	 * Método que monstra as empresas na tela
@@ -33,6 +34,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		pesq.setBounds(90, 5, 160, 15);
 		barra.setBounds(90, 20, 160, 25);
 		busca.setBounds(290, 20, 100, 25);
+		refresh.setBounds(180, 260, 100, 30);
 		
 		//monstra a listagem das empresas
 		lista = new JList<String>(new ControleEmpresa(dados).getNomeEmpresas());
@@ -44,11 +46,13 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		janela.add(pesq);
 		janela.add(barra);
 		janela.add(busca);
+		janela.add(refresh);
 		janela.getContentPane().add(scroll);
 		
 		janela.setSize(500, 350);
 		janela.setVisible(true);
 		lista.addListSelectionListener(this);
+		refresh.addActionListener(this);
 		
 	}
 	/**
@@ -56,6 +60,12 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	 */
 	
 	public void actionPerformed(ActionEvent e) {
+		Object src = e.getSource();
+		
+		if (src == refresh) {
+			lista.setListData(new ControleEmpresa(dados).getNomeEmpresas());
+			lista.updateUI();
+		}
 		
 	}
 	

@@ -28,10 +28,10 @@ public class TelaInfoEmpresa implements ActionListener {
 	private JTextField qtdVagas = new JTextField();
 	private JButton botaoCadastrarVagas = new JButton("Cadastrar Vagas");
 	private JButton botaoVagas = new JButton("Vagas");
-	private JButton botaoEditar = new JButton("Editar Empresa");
+	private JButton botaoSalvar = new JButton("Salvar");
+	private String[] novosDados = new String[6];
 	private static ControleDados dados;
 	private int posi;
-	private boolean editar=false;
 	
 	/**
 	 * Método que monstra a tela Info Empresa
@@ -59,7 +59,7 @@ public class TelaInfoEmpresa implements ActionListener {
 		qtdVagas.setBounds(240,140 , 150, 20);
 		botaoCadastrarVagas.setBounds(110, 260, 130, 30);
 		botaoVagas.setBounds(250, 260, 130, 30);
-		botaoEditar.setBounds(180, 180,130 ,30);
+		botaoSalvar.setBounds(180, 180,130 ,30);
 		
 		//determina as informações da empresa
 		cnpj.setText(String.valueOf(dados.getEmpresa(posi).getCNPJ()));
@@ -67,13 +67,6 @@ public class TelaInfoEmpresa implements ActionListener {
 		ddd.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getDDD()));
 		numero.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getNumero()));
 		qtdVagas.setText(String.valueOf(dados.getEmpresa(posi).getQtdVagaExp()+dados.getEmpresa(posi).getQtdVagaInxp()));
-		
-		//inclui o botão editar em todas as informações da tela
-		cnpj.setEditable(editar);
-		nome.setEditable(editar);
-		ddd.setEditable(editar);
-		numero.setEditable(editar);
-		qtdVagas.setEditable(editar);
 		
 		//adiciona todos textos na janela
 		janela.add(labelCNPJ);
@@ -87,12 +80,12 @@ public class TelaInfoEmpresa implements ActionListener {
 		janela.add(qtdVagas);
 		janela.add(botaoCadastrarVagas);
 		janela.add(botaoVagas);
-		janela.add(botaoEditar);
+		janela.add(botaoSalvar);
 		
 		janela.setVisible(true);
 		
 		//adiciona o botão editar e Vagas na janela
-		botaoEditar.addActionListener(this);
+		botaoSalvar.addActionListener(this);
 		botaoVagas.addActionListener(this);
 		
 	}
@@ -102,15 +95,30 @@ public class TelaInfoEmpresa implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		if(src==botaoEditar){
+		if(src==botaoSalvar){
 			
-			editar=true;
-			mostrarInfoEmpresa( dados ,  posi);
+			boolean save;
+			
+			novosDados[0] = String.valueOf(posi);
+			novosDados[1] = cnpj.getText();
+			novosDados[2] = nome.getText();
+			novosDados[3] = ddd.getText();
+			novosDados[4] = numero.getText();
+			novosDados[5] = qtdVagas.getText();
+			
+			save = dados.inserirEditarEmpresa(novosDados);
+			
+			if (save) mensagemSucessoCadastro();
 			
 		}else if(src == botaoVagas){
 			
 			new TelaListaVagas().mostrarVagas(dados,1,posi);
 			
 		}
+	}
+	
+	public void mensagemSucessoCadastro() {
+		JOptionPane.showMessageDialog(null, "Os dados foram Cadastrados com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
 	}
 }

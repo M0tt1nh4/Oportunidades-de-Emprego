@@ -108,11 +108,11 @@ public class ControleDados {
      */
     
     public boolean inserirEditarEmpresa(String[] novosDados) {
-        if (!novosDados[1].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || novosDados[4].matches("[0-9]+")) {
+        if (!novosDados[1].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[4].matches("[0-9]+") || !novosDados[5].matches("[0-9]+")) {
             return false;
         } else {
             Telefone newTel = new Telefone(Integer.parseInt(novosDados[3]), Integer.parseInt(novosDados[4]));
-            Empresa emp = new Empresa(Long.parseLong(novosDados[0]), novosDados[2], newTel, 0, 0);
+            Empresa emp = new Empresa(Long.parseLong(novosDados[1]), novosDados[2], newTel, 0, 0);
             d.inserirEditarEmpresa(Integer.parseInt(novosDados[0]), emp);
             return true;
         }
