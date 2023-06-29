@@ -25,13 +25,15 @@ public class TelaInfoEmpresa implements ActionListener {
 	private JTextField ddd = new JTextField();
 	private JTextField numero = new JTextField();
 	private JLabel labelQtdVagas = new JLabel("Quantidade de Vagas: ");
-	private JTextField qtdVagas = new JTextField();
-	private JButton botaoCadastrarVagas = new JButton("Cadastrar Vagas");
+	private JLabel tipohEmp = new JLabel("Tipo de Empresa a ser cadastrada:");
+	private JLabel qtdVagas = new JLabel();
 	private JButton botaoVagas = new JButton("Vagas");
 	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoContinuar = new JButton("Continuar");
 	private String[] novosDados = new String[6];
 	private static ControleDados dados;
 	private int posi;
+	private int posEmp;
 	
 	/**
 	 * Método que monstra a tela Info Empresa
@@ -42,6 +44,7 @@ public class TelaInfoEmpresa implements ActionListener {
 	public void mostrarInfoEmpresa(ControleDados d , int posi) {
 		dados = d;
 		this.posi = posi;
+		this.posEmp = posEmp;
 		
 		//determina o tamanho da janela
 		janela.setSize(500, 350);
@@ -57,16 +60,17 @@ public class TelaInfoEmpresa implements ActionListener {
 		numero.setBounds(285, 110, 105, 20);
 		labelQtdVagas.setBounds(100, 140, 200, 20);
 		qtdVagas.setBounds(240,140 , 150, 20);
-		botaoCadastrarVagas.setBounds(110, 260, 130, 30);
-		botaoVagas.setBounds(250, 260, 130, 30);
-		botaoSalvar.setBounds(180, 180,130 ,30);
+		botaoVagas.setBounds(250, 200, 130, 30);
+		botaoSalvar.setBounds(110, 200, 130, 30);
 		
 		//determina as informações da empresa
-		cnpj.setText(String.valueOf(dados.getEmpresa(posi).getCNPJ()));
-		nome.setText(dados.getEmpresa(posi).getNome());
-		ddd.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getDDD()));
-		numero.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getNumero()));
-		qtdVagas.setText(String.valueOf(dados.getEmpresa(posi).getQtdVagaExp()+dados.getEmpresa(posi).getQtdVagaInxp()));
+		if (posi < dados.getQtdEmpresas()) {
+			cnpj.setText(String.valueOf(dados.getEmpresa(posi).getCNPJ()));
+			nome.setText(dados.getEmpresa(posi).getNome());
+			ddd.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getDDD()));
+			numero.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getNumero()));
+			qtdVagas.setText(String.valueOf(dados.getEmpresa(posi).getQtdVagaExp()+dados.getEmpresa(posi).getQtdVagaInxp()));
+		} else labelQtdVagas.setVisible(false);
 		
 		//adiciona todos textos na janela
 		janela.add(labelCNPJ);
@@ -78,7 +82,6 @@ public class TelaInfoEmpresa implements ActionListener {
 		janela.add(ddd);
 		janela.add(numero);
 		janela.add(qtdVagas);
-		janela.add(botaoCadastrarVagas);
 		janela.add(botaoVagas);
 		janela.add(botaoSalvar);
 		
@@ -89,13 +92,32 @@ public class TelaInfoEmpresa implements ActionListener {
 		botaoVagas.addActionListener(this);
 		
 	}
+		public void tipoEmpresaCadastro(ControleDados d, int posEmp) {
+		
+		dados = d;
+		this.posEmp = posEmp;
+		
+		janela.setSize(300, 200);
+		janela.setLayout(null);
+		
+		tipohEmp.setBounds(50, 10, 200, 30);
+		botaoContinuar.setBounds(90, 110, 100, 30);
+		
+		janela.add(tipohEmp);
+		janela.add(botaoContinuar);
+		
+		janela.setVisible(true);
+		
+		botaoContinuar.addActionListener(this);
+		
+	}
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
 	 */
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		if(src==botaoSalvar){
+		if (src == botaoSalvar){
 			
 			boolean save;
 			
@@ -110,12 +132,40 @@ public class TelaInfoEmpresa implements ActionListener {
 			
 			if (save) mensagemSucessoCadastro();
 			
-		}else if(src == botaoVagas){
+		}
+		
+		if (src == botaoVagas){
 			
-			new TelaListaVagas().mostrarVagas(dados,1,posi);
+			janela.dispose();
+			new TelaListaVagas().mostrarVagas(dados, 1, posi);
 			
 		}
+		if (src == botaoContinuar) {
+			
+				janela.dispose();
+				new TelaInfoEmpresa().mostrarInfoEmpresa(dados, posi);
+				
+		} else {
+				
+				JOptionPane.showMessageDialog(null, "É necessário selecionar um tipo de Empresa!", null, JOptionPane.INFORMATION_MESSAGE);
+				
+			}
+			
+		}
+		
+	/**
+	 * Método que monstra uma mensagem de Suceesso se os dados forem salvos 
+	 */
+	
+	public void mensagemErroCadastro() {
+		JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!\n"
+				+ "Pode ter ocorrido um ou mais erros a seguir:\n"
+				+ "1. Nem todos os campos foram preenchidos\n"
+				+ "2. \n", null,
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
 	}
+	
 	
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram Cadastrados com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);

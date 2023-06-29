@@ -40,9 +40,14 @@ public class TelaInfoVaga implements ActionListener {
 	private JLabel labelEstagio = new JLabel("Estágio: ");
 	private JRadioButton estagio1 = new JRadioButton("Sim");
 	private JRadioButton estagio2 = new JRadioButton("Não");
+	private JRadioButton exp = new JRadioButton("Experiente");
+	private JRadioButton inxp = new JRadioButton("Inexperiente");
+	private JLabel tipoVg = new JLabel("Tipo de Vaga a ser cadastrada:");
+	private JButton botaoContinuar = new JButton("Continuar");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private ButtonGroup grupo1 = new ButtonGroup();
 	private ButtonGroup grupo2 = new ButtonGroup();	
+	private ButtonGroup grupo3 = new ButtonGroup();
 	private String[] novosDados = new String[9];
 	private static ControleDados dados;
 	private int posi; 
@@ -73,6 +78,7 @@ public class TelaInfoVaga implements ActionListener {
 			if (posi < vgs.getQtdExp()) {
 				this.opc = 1;
 			} else this.opc = 2;
+			
 		}
 		
 		switch(this.opc) {
@@ -98,12 +104,18 @@ public class TelaInfoVaga implements ActionListener {
 				
 				botaoSalvar.setBounds(180, 230, 130, 30);
 				
-				funcao.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getFuncao());
-				cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getCarga())));
-				quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getQtd())));
-				salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getSalario())));
-				anosdeExp.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getAnosdeExp())));
-				preRequisitos.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getPrerequisito());
+				System.out.println(dados.getEmpresa(this.posEmp).getQtdVagaExp());
+				
+				if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaExp()) {
+					
+					funcao.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getFuncao());
+					cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getCarga())));
+					quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getQtd())));
+					salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getSalario())));
+					anosdeExp.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getAnosdeExp())));
+					preRequisitos.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getPrerequisito());
+					
+				}
 				
 				janela.add(labelFuncao);
 				janela.add(labelCargahoraria);
@@ -158,30 +170,34 @@ public class TelaInfoVaga implements ActionListener {
 				
 				botaoSalvar.setBounds(180, 230, 130, 30);
 				
-			    if (dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getRemunerado()) {
+			    if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaInxp()) {
 			    	
-			    	remunerado1.setSelected(true);
-			    	
-			    } else {
-			    	
-			    	remunerado2.setSelected(true);
-			    	
-			    }
-			    
-				 if(dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getEstagio()) {
-					 
-				    	estagio1.setSelected(true);
+			    	if (dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getRemunerado()) {
+				    	
+				    	remunerado1.setSelected(true);
 				    	
 				    } else {
 				    	
-				    	estagio2.setSelected(true);
+				    	remunerado2.setSelected(true);
 				    	
 				    }
-				 
-				funcao.setText(dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getFuncao());
-				cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getCarga())));
-				quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getQtd())));
-				salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getSalario())));
+				    
+					 if(dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getEstagio()) {
+						 
+					    	estagio1.setSelected(true);
+					    	
+					    } else {
+					    	
+					    	estagio2.setSelected(true);
+					    	
+					    }
+					 
+					funcao.setText(dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getFuncao());
+					cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getCarga())));
+					quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getQtd())));
+					salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getSalario())));
+			    	
+			    }
 				
 				janela.add(labelFuncao);
 				janela.add(labelCargahoraria);
@@ -212,6 +228,33 @@ public class TelaInfoVaga implements ActionListener {
 		}
 	}
 	
+	public void tipoVagaCadastro(ControleDados d, int posEmp) {
+		
+		dados = d;
+		this.posEmp = posEmp;
+		
+		janela.setSize(300, 200);
+		janela.setLayout(null);
+		
+		tipoVg.setBounds(50, 10, 200, 30);
+		exp.setBounds(90, 40, 100, 20);
+		inxp.setBounds(90, 70, 100, 20);
+		botaoContinuar.setBounds(90, 110, 100, 30);
+		
+		grupo3.add(exp);
+		grupo3.add(inxp);
+		
+		janela.add(tipoVg);
+		janela.add(exp);
+		janela.add(inxp);
+		janela.add(botaoContinuar);
+		
+		janela.setVisible(true);
+		
+		botaoContinuar.addActionListener(this);
+		
+	}
+	
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
 	 */
@@ -221,49 +264,66 @@ public class TelaInfoVaga implements ActionListener {
 		
 		//botão que salva novos dados
 		if (src == botaoSalvar) {
-			
-			try {
 
-				boolean save;
+			boolean save;
+			
+			novosDados[0] = Integer.toString(posi);
+			novosDados[1] = funcao.getText();
+			novosDados[2] = cargaHoraria.getText();
+			novosDados[3] = quantidade.getText();
+			novosDados[4] = salario.getText();
 				
-				novosDados[0] = Integer.toString(posi);
-				novosDados[1] = funcao.getText();
-				novosDados[2] = cargaHoraria.getText();
-				novosDados[3] = quantidade.getText();
-				novosDados[4] = salario.getText();
-				
-				if (opc == 1) {
+			if (opc == 1) {
 					
-					novosDados[5] = anosdeExp.getText();
-					novosDados[6] = preRequisitos.getText();
+				novosDados[5] = anosdeExp.getText();
+				novosDados[6] = preRequisitos.getText();
 					
-				} else {
+			} else {
 					
-					if (remunerado1.isSelected()) {
+				if (remunerado1.isSelected() && (remunerado1.isSelected() || remunerado2.isSelected())) {
 						
-						novosDados[7] = "true";
+					novosDados[7] = "true";
 						
-					} else novosDados[7] = "false";
+				} else novosDados[7] = "false";
 					
-					if (estagio1.isSelected()) {
+				if (estagio1.isSelected() && (estagio1.isSelected() || estagio2.isSelected())) {
 						
-						novosDados[8] = "true";
+					novosDados[8] = "true";
 						
-					} else novosDados[8] = "false";
+				} else novosDados[8] = "false";
 					
-				}
+			}
 				
-				save = dados.inserirEditarVaga(novosDados, posEmp, opc);
-				
-				if (save) {
+			save = dados.inserirEditarVaga(novosDados, posEmp, opc);
+			
+			if (save) {
 					
-					mensagemSucessoCadastro();
-					
-				}
+				mensagemSucessoCadastro();
+				janela.dispose();
 				
-			} catch (NullPointerException exc1) {
+			} else {
 				
-			} catch (NumberFormatException exc2) {
+				mensagemErroCadastro();
+				
+			}
+			
+		}
+		
+		if (src == botaoContinuar) {
+			
+			if (exp.isSelected()) {
+				
+				janela.dispose();
+				new TelaInfoVaga().mostrarInfoVaga(1, dados, posEmp, dados.getEmpresa(posEmp).getQtdVagaTotal());
+				
+			} else if (inxp.isSelected()) {
+				
+				janela.dispose();
+				new TelaInfoVaga().mostrarInfoVaga(2, dados, posEmp, dados.getEmpresa(posEmp).getQtdVagaTotal());
+				
+			} else {
+				
+				JOptionPane.showMessageDialog(null, "É necessário selecionar um tipo de Vaga!", null, JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 			
@@ -275,6 +335,15 @@ public class TelaInfoVaga implements ActionListener {
 	 */
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram salvos com sucesso!", null,
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+	}
+	
+	public void mensagemErroCadastro() {
+		JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!\n"
+				+ "Pode ter ocorrido um ou mais erros a seguir:\n"
+				+ "1. Nem todos os campos foram preenchidos\n"
+				+ "2. \n", null,
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
