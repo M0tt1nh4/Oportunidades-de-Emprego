@@ -17,11 +17,13 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 	private JFrame janela = new JFrame("Lista de Vagas");
 	private JLabel pesq = new JLabel("Pesquisar Vagas");
 	private JTextField barra = new JTextField();
+	private String resultPesq = "";
 	private JList<String> lista;
 	private JScrollPane scroll ;
 	private JButton busca = new JButton("Buscar");
 	private JButton refresh = new JButton("Atualizar");
 	private JButton botaoCadastrarVaga = new JButton("Cadastrar Vagas");
+	private boolean buscado = false;
 	private static ControleDados dados;
 	private int op;
 	private int posEmp;
@@ -73,6 +75,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				break;
 				
 			case 2:
+				
 				pesq.setBounds(90, 5, 160, 15);
 				barra.setBounds(90, 20, 160, 25);
 				busca.setBounds(290, 20, 100, 25);
@@ -98,6 +101,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				busca.addActionListener(this);
 				
 				break;
+				
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
@@ -106,24 +110,79 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 		//atualiza lista
 		if (src == refresh) {
 			
-			if (op == 1) {
+			if (resultPesq.equals("") || barra.getText().equals("")) {
 				
-				lista.setListData(new ControleVagas(dados, posEmp).getFuncVagas());
-				lista.updateUI();
+				if (op == 1) {
+					
+					lista.setListData(new ControleVagas(dados, posEmp).getFuncVagas());
+					lista.updateUI();
+					
+				} else {
+					
+					lista.setListData(new ControleVagas(dados).getFuncVagas());
+					lista.updateUI();
+					
+				}
+				
+				buscado = false;
 				
 			} else {
 				
-				lista.setListData(new ControleVagas(dados).getFuncVagas());
-				lista.updateUI();
+				if (op == 1) {
+					
+					lista.setListData(new ControleVagas(dados, posEmp).buscaVaga(resultPesq));
+					lista.updateUI();
+					
+				} else {
+					
+					lista.setListData(new ControleVagas(dados).buscaVaga(resultPesq));
+					lista.updateUI();
+					
+				}
 				
 			}
 			
 		}
+		
 		//busca na lista
-		if(src ==busca) {
-			lista.setListData(new ControleVagas(dados).buscaVaga(barra.getText()));
-			//recarrega lista
-			lista.updateUI();
+		if(src == busca) {
+			
+			resultPesq = barra.getText();
+			buscado = true;
+			
+			if (resultPesq.equals("")) {
+				
+				if (op == 1) {
+					
+					lista.setListData(new ControleVagas(dados, posEmp).getFuncVagas());
+					lista.updateUI();
+					
+				} else {
+					
+					lista.setListData(new ControleVagas(dados).getFuncVagas());
+					lista.updateUI();
+					
+				}
+				
+				buscado = false;
+				
+			} else {
+				
+				if (op == 1) {
+					
+					lista.setListData(new ControleVagas(dados, posEmp).buscaVaga(resultPesq));
+					lista.updateUI();
+					
+				} else {
+					
+					//recarrega lista
+					lista.setListData(new ControleVagas(dados).buscaVaga(resultPesq));
+					lista.updateUI();
+					
+				}
+				
+			}
+			
 		}
 		
 		if (src == botaoCadastrarVaga) {
@@ -149,20 +208,44 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				
 				if(op==1) {
 					
-					if(posi < dados.getQtdVagasExp(posEmp)) {
+					if (buscado) {
 						
-						new TelaInfoVaga().mostrarInfoVaga(1,dados, posEmp, posi);
+						if(posi < new ControleVagas(dados, posEmp).buscaPosVg(resultPesq)[0]) {
+							
+							new TelaInfoVaga().mostrarInfoVaga(1,dados, posEmp, new ControleVagas(dados, posEmp).buscaPosVg(resultPesq)[posi+1]);
+							
+						} else {
+							
+							new TelaInfoVaga().mostrarInfoVaga(2,dados, posEmp, new ControleVagas(dados, posEmp).buscaPosVg(resultPesq)[posi+1]);
+							
+						}
 						
 					} else {
 						
-						new TelaInfoVaga().mostrarInfoVaga(2,dados, posEmp, posi-dados.getQtdVagasExp(posEmp));
+						if(posi < dados.getQtdVagasExp(posEmp)) {
+							
+							new TelaInfoVaga().mostrarInfoVaga(1,dados, posEmp, posi);
+							
+						} else {
+							
+							new TelaInfoVaga().mostrarInfoVaga(2,dados, posEmp, posi-dados.getQtdVagasExp(posEmp));
+							
+						}
 						
 					}
 					
-				}
-				
-				else {
-					new TelaInfoVaga().mostrarInfoVaga(3, dados, -1, posi);
+				} else {
+					
+					if (buscado) {
+							
+						new TelaInfoVaga().mostrarInfoVaga(3, dados, -1, new ControleVagas(dados).buscaPosVg(resultPesq)[posi+1]);
+						
+					} else {
+						
+						new TelaInfoVaga().mostrarInfoVaga(3, dados, -1, posi);
+						
+					}
+					
 				}
 				
 	    	}

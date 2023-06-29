@@ -22,6 +22,7 @@ import controle.*;
 
 public class TelaInfoVaga implements ActionListener {
 	private JFrame janela = new JFrame("Informação de Vaga");
+	private JLabel empresa = new JLabel();
 	private JLabel labelFuncao = new JLabel("Função: ");
 	private JTextField funcao = new JTextField();
 	private JLabel labelCargahoraria = new JLabel("Carga Horária: ");
@@ -81,14 +82,15 @@ public class TelaInfoVaga implements ActionListener {
 			
 		}
 		
-		System.out.println(this.posEmp + " " + this.posi);
-		
 		switch(this.opc) {
 		
 			//Vaga experiente
 			case 1 : 
 				janela.setSize(500, 350);
 				janela.setLayout(null);
+				
+				empresa.setBounds(220, 20, 150, 20);
+				empresa.setText(dados.getEmpresa(this.posEmp).getNome());
 				
 				labelFuncao.setBounds(100, 50, 150, 20);
 				labelCargahoraria.setBounds(100, 80, 150, 20);
@@ -106,8 +108,6 @@ public class TelaInfoVaga implements ActionListener {
 				
 				botaoSalvar.setBounds(180, 230, 130, 30);
 				
-				System.out.println(dados.getEmpresa(this.posEmp).getQtdVagaExp());
-				
 				if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaExp()) {
 					
 					funcao.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getFuncao());
@@ -119,6 +119,7 @@ public class TelaInfoVaga implements ActionListener {
 					
 				}
 				
+				janela.add(empresa);
 				janela.add(labelFuncao);
 				janela.add(labelCargahoraria);
 				janela.add(labelQuantidade);
@@ -145,6 +146,9 @@ public class TelaInfoVaga implements ActionListener {
 				
 				janela.setSize(500, 350);
 				janela.setLayout(null);
+				
+				empresa.setBounds(220, 20, 150, 20);
+				empresa.setText(dados.getEmpresa(this.posEmp).getNome());
 				
 				labelFuncao.setBounds(100, 50, 150, 20);
 				labelCargahoraria.setBounds(100, 80, 150, 20);
@@ -201,6 +205,7 @@ public class TelaInfoVaga implements ActionListener {
 			    	
 			    }
 				
+			    janela.add(empresa);
 				janela.add(labelFuncao);
 				janela.add(labelCargahoraria);
 				janela.add(labelQuantidade);
