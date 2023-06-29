@@ -153,18 +153,7 @@ public class TelaInfoEmpresa implements ActionListener {
 			
 		}
 		
-	/**
-	 * Método que monstra uma mensagem de Suceesso se os dados forem salvos 
-	 */
 	
-	public void mensagemErroCadastro() {
-		JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!\n"
-				+ "Pode ter ocorrido um ou mais erros a seguir:\n"
-				+ "1. Nem todos os campos foram preenchidos\n"
-				+ "2. \n", null,
-				JOptionPane.INFORMATION_MESSAGE);
-		janela.dispose();
-	}
 	
 	
 	public void mensagemSucessoCadastro() {

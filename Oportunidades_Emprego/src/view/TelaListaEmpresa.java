@@ -91,11 +91,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 					lista.updateUI();
 				}
 				
-				if (src == cadastro) {
-					
-					new TelaInfoEmpresa().tipoEmpresaCadastro(dados,0);
-					
-				}
+			
 	}
 	
 	/**
