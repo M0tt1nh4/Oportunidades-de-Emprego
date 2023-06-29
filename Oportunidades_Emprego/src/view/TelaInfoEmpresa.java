@@ -25,8 +25,7 @@ public class TelaInfoEmpresa implements ActionListener {
 	private JTextField ddd = new JTextField();
 	private JTextField numero = new JTextField();
 	private JLabel labelQtdVagas = new JLabel("Quantidade de Vagas: ");
-	private JTextField qtdVagas = new JTextField();
-	private JButton botaoCadastrarVagas = new JButton("Cadastrar Vagas");
+	private JLabel qtdVagas = new JLabel();
 	private JButton botaoVagas = new JButton("Vagas");
 	private JButton botaoSalvar = new JButton("Salvar");
 	private String[] novosDados = new String[6];
@@ -57,16 +56,17 @@ public class TelaInfoEmpresa implements ActionListener {
 		numero.setBounds(285, 110, 105, 20);
 		labelQtdVagas.setBounds(100, 140, 200, 20);
 		qtdVagas.setBounds(240,140 , 150, 20);
-		botaoCadastrarVagas.setBounds(110, 260, 130, 30);
-		botaoVagas.setBounds(250, 260, 130, 30);
-		botaoSalvar.setBounds(180, 180,130 ,30);
+		botaoVagas.setBounds(250, 200, 130, 30);
+		botaoSalvar.setBounds(110, 200, 130, 30);
 		
 		//determina as informações da empresa
-		cnpj.setText(String.valueOf(dados.getEmpresa(posi).getCNPJ()));
-		nome.setText(dados.getEmpresa(posi).getNome());
-		ddd.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getDDD()));
-		numero.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getNumero()));
-		qtdVagas.setText(String.valueOf(dados.getEmpresa(posi).getQtdVagaExp()+dados.getEmpresa(posi).getQtdVagaInxp()));
+		if (posi < dados.getQtdEmpresas()) {
+			cnpj.setText(String.valueOf(dados.getEmpresa(posi).getCNPJ()));
+			nome.setText(dados.getEmpresa(posi).getNome());
+			ddd.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getDDD()));
+			numero.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getNumero()));
+			qtdVagas.setText(String.valueOf(dados.getEmpresa(posi).getQtdVagaExp()+dados.getEmpresa(posi).getQtdVagaInxp()));
+		} else labelQtdVagas.setVisible(false);
 		
 		//adiciona todos textos na janela
 		janela.add(labelCNPJ);
@@ -78,7 +78,6 @@ public class TelaInfoEmpresa implements ActionListener {
 		janela.add(ddd);
 		janela.add(numero);
 		janela.add(qtdVagas);
-		janela.add(botaoCadastrarVagas);
 		janela.add(botaoVagas);
 		janela.add(botaoSalvar);
 		
@@ -95,7 +94,7 @@ public class TelaInfoEmpresa implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
-		if(src==botaoSalvar){
+		if (src == botaoSalvar){
 			
 			boolean save;
 			
@@ -110,11 +109,15 @@ public class TelaInfoEmpresa implements ActionListener {
 			
 			if (save) mensagemSucessoCadastro();
 			
-		}else if(src == botaoVagas){
+		}
+		
+		if (src == botaoVagas){
 			
-			new TelaListaVagas().mostrarVagas(dados,1,posi);
+			janela.dispose();
+			new TelaListaVagas().mostrarVagas(dados, 1, posi);
 			
 		}
+		
 	}
 	
 	public void mensagemSucessoCadastro() {

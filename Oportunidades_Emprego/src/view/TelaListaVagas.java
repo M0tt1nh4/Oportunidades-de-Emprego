@@ -21,6 +21,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 	private JScrollPane scroll ;
 	private JButton busca = new JButton("Buscar");
 	private JButton refresh = new JButton("Atualizar");
+	private JButton botaoCadastrarVaga = new JButton("Cadastrar Vagas");
 	private static ControleDados dados;
 	private int op;
 	private int posEmp;
@@ -38,16 +39,17 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 		op = opc;
 		posEmp = posi;
 		
-		//monstra de onde na tela vem o monstrar vagas
+		//mostra de onde na tela vem o mostrar vagas
 		switch (op) {
 			case 1:
 				
 				pesq.setBounds(90, 5, 160, 15);
 				barra.setBounds(90, 20, 160, 25);
 				busca.setBounds(290, 20, 100, 25);
-				refresh.setBounds(180 ,260, 100, 30);
+				refresh.setBounds(260 ,260, 100, 30);
+				botaoCadastrarVaga.setBounds(120, 260, 130, 30);
 				
-				lista = new JList<String>(new ControleVagas(dados,posEmp).getFuncVagas());
+				lista = new JList<String>(new ControleVagas(dados, posEmp).getFuncVagas());
 				scroll= new JScrollPane(lista);
 				scroll.setBounds(90, 50, 300, 200);
 				
@@ -57,6 +59,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				janela.add(barra);
 				janela.add(busca);
 				janela.add(refresh);
+				janela.add(botaoCadastrarVaga);
 				janela.getContentPane().add(scroll);
 				
 				janela.setSize(500, 350);
@@ -65,6 +68,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 				lista.addListSelectionListener(this);
 				refresh.addActionListener(this);
 				busca.addActionListener(this);
+				botaoCadastrarVaga.addActionListener(this);
 				
 				break;
 				
@@ -120,6 +124,12 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 			lista.setListData(new ControleVagas(dados).buscaVaga(barra.getText()));
 			//recarrega lista
 			lista.updateUI();
+		}
+		
+		if (src == botaoCadastrarVaga) {
+			
+			new TelaInfoVaga().tipoVagaCadastro(dados, posEmp);
+			
 		}
 		
 	}

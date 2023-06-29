@@ -151,8 +151,18 @@ public class Dados {
     
     public void inserirEditarEmpresa(int pos, Empresa emp) {
     	
-    	empresas[pos] = emp;
-    	if (pos == qtdEmpresas) qtdEmpresas++;
+    	if (pos == qtdEmpresas) {
+    		
+    		empresas[pos] = emp;
+    		qtdEmpresas++;
+    		
+    	} else {
+    		
+    		empresas[pos].setCNPJ(emp.getCNPJ());
+    		empresas[pos].setNome(emp.getNome());
+    		empresas[pos].setTelefone(emp.getTelefone());
+    		
+    	}
     	
     }
     
@@ -164,9 +174,13 @@ public class Dados {
      */
     
     public void inserirEditarVagaExp(int posVaga, int posEmp, VagaExperiente vg) {
-    	empresas[posEmp].setVagaExp(vg, posVaga);
     	
-    	if (posVaga == empresas[posEmp].getQtdVagaExp()) empresas[posEmp].setQtdVagaExp(posVaga+1);
+    	if (posVaga == empresas[posEmp].getQtdVagaTotal()) {
+    		
+    		empresas[posEmp].setQtdVagaExp(empresas[posEmp].getQtdVagaExp()+1);
+    		empresas[posEmp].setVagaExp(vg, posVaga - empresas[posEmp].getQtdVagaInxp());
+    		
+    	} else empresas[posEmp].setVagaExp(vg, posVaga);
     }
     
     /**
@@ -176,9 +190,14 @@ public class Dados {
      * @param vg			vaga nova editada
      */
     public void inserirEditarVagaInxp(int posVaga, int posEmp, VagaInexperiente vg) {
-    	empresas[posEmp].setVagaInxp(vg, posVaga);
     	
-    	if (posVaga == empresas[posEmp].getQtdVagaInxp()) empresas[posEmp].setQtdVagaInxp(posVaga+1);
+    	if (posVaga == empresas[posEmp].getQtdVagaTotal()) {
+    		
+    		empresas[posEmp].setVagaInxp(vg, posVaga - empresas[posEmp].getQtdVagaExp());
+    		empresas[posEmp].setQtdVagaInxp(empresas[posEmp].getQtdVagaInxp()+1);
+    		
+    	} else empresas[posEmp].setVagaInxp(vg, posVaga);
+    		
     }
 }
     

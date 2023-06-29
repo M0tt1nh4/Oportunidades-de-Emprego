@@ -45,8 +45,9 @@ public class ControleVagas {
 		exp = d.getVagasExp(posi);
 		inexp = d.getVagasInxp(posi);
 		qtdexp = d.getQtdVagasExp(posi);
-		qtdinexp = d.getQtdVagasExp(posi);
+		qtdinexp = d.getQtdVagasInxp(posi);
 		qtdVagas = d.getEmpresa(posi).getQtdVagaTotal();
+		System.out.println(emp.getQtdVagaTotal());
 	}
 	
 	//get vaga experientes
@@ -145,16 +146,18 @@ public class ControleVagas {
         int x = 0;
         
         for (int i = 0; i < qtdexp; i++) {	
+        	
                if (exp[i].getFuncao().equals(funcao)) {
-                   a[x]=funcao;
+                   a[x] = funcao;
                    x++;
                }
                
             }
           
         for (int i = 0; i < qtdinexp; i++) {
+        	
                 if(inexp[i].getFuncao().equals(funcao)) {
-                    a[x]=funcao;
+                    a[x] = funcao;
                     x++;
                 }
                 

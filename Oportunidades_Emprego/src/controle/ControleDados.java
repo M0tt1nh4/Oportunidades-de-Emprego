@@ -108,7 +108,7 @@ public class ControleDados {
      */
     
     public boolean inserirEditarEmpresa(String[] novosDados) {
-        if (!novosDados[1].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[4].matches("[0-9]+") || !novosDados[5].matches("[0-9]+")) {
+        if (!novosDados[1].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[4].matches("[0-9]+")) {
             return false;
         } else {
             Telefone newTel = new Telefone(Integer.parseInt(novosDados[3]), Integer.parseInt(novosDados[4]));
@@ -140,7 +140,6 @@ public class ControleDados {
 	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[5].matches("[0-9]+")) {
     			return false;
     		} else {
-    			
     			VagaExperiente vg = new VagaExperiente(novosDados[1], Integer.parseInt(novosDados[2]), Integer.parseInt(novosDados[3]), dbl,
     					Integer.parseInt(novosDados[5]), novosDados[6]);
     			
@@ -151,10 +150,9 @@ public class ControleDados {
     		
 	    } else {
 	    	
-	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+")) {
+	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !(novosDados[8] == "true" || novosDados[8] == "false")) {
     			return false;
     		} else {
-
         			VagaInexperiente vg = new VagaInexperiente(novosDados[1], Integer.parseInt(novosDados[2]), Integer.parseInt(novosDados[3]), dbl,
         					Boolean.parseBoolean(novosDados[7]), Boolean.parseBoolean(novosDados[8]));
         			
