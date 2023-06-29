@@ -16,7 +16,7 @@ import java.awt.event.*;
  */
 
 public class TelaInfoEmpresa implements ActionListener {
-	private JFrame janela = new JFrame("Informação de Empresa");
+	private JFrame janela = new JFrame("Informacao da Empresa");
 	private JLabel labelCNPJ = new JLabel("CNPJ: ");
 	private JTextField cnpj = new JTextField();
 	private JLabel labelNome = new JLabel("Nome: ");
@@ -88,6 +88,7 @@ public class TelaInfoEmpresa implements ActionListener {
 		botaoVagas.addActionListener(this);
 		
 	}
+		
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
 	 */
@@ -117,9 +118,8 @@ public class TelaInfoEmpresa implements ActionListener {
 			new TelaListaVagas().mostrarVagas(dados, 1, posi);
 			
 		}
-		
 	}
-	
+		
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram Cadastrados com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();

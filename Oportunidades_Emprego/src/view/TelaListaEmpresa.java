@@ -21,6 +21,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	private static ControleDados dados;
 	private JScrollPane scroll ;
 	private JButton busca = new JButton("Buscar");
+	private JButton refresh = new JButton("Atualizar");
 	private JButton cadastro = new JButton("Cadastrar Empresa");
 	private JButton att = new JButton("Atualizar");
 	
@@ -58,6 +59,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		att.addActionListener(this);
 		cadastro.addActionListener(this);
 		
+		busca.addActionListener(this);
 	}
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
@@ -74,7 +76,22 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 		if (src == cadastro) {
 			new TelaInfoEmpresa().mostrarInfoEmpresa(dados, dados.getQtdEmpresas());
 		}
-		
+		//atualiza lista
+				if (src == refresh) {
+						
+						lista.setListData(new ControleEmpresa(dados).getNomeEmpresas());
+						lista.updateUI();
+						
+					}
+		//busca na lista
+				if(src ==busca) {
+					lista.setListData(new ControleEmpresa(dados).buscaEmpresa(barra.getText()));
+					
+					//recarrega lista
+					lista.updateUI();
+				}
+				
+			
 	}
 	
 	/**

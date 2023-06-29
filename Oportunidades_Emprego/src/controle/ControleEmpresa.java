@@ -49,5 +49,24 @@ public class ControleEmpresa {
     	}
     	return -1;
     }
+    /**
+	 * Método que busca as empresas
+	 * @param funcao	função é a empresa que o usuário pesquisou
+	 * @return String
+	 */
+	public String[] buscaEmpresa(String funcao) {
+        String [] a = new String[qtdEmp];
+        int x = 0;
+        for (int i = 0; i < qtdEmp; i++) {	
+        	
+               if (empresas[i].getNome().equals(funcao)) {
+                   a[x] = funcao;
+                   x++;
+               }
+               
+            }
+       
+        return a;
+    }
     
 }

@@ -21,26 +21,26 @@ import controle.*;
  */
 
 public class TelaInfoVaga implements ActionListener {
-	private JFrame janela = new JFrame("Informação de Vaga");
+	private JFrame janela = new JFrame("Informacao da Vaga");
 	private JLabel empresa = new JLabel();
-	private JLabel labelFuncao = new JLabel("Função: ");
+	private JLabel labelFuncao = new JLabel("Funcao: ");
 	private JTextField funcao = new JTextField();
-	private JLabel labelCargahoraria = new JLabel("Carga Horária: ");
+	private JLabel labelCargahoraria = new JLabel("Carga Horaria: ");
 	private JTextField cargaHoraria = new JTextField();
 	private JLabel labelQuantidade = new JLabel("Quantidade: ");
 	private JTextField quantidade = new JTextField();
-	private JLabel labelSalario = new JLabel("Salário: ");
+	private JLabel labelSalario = new JLabel("Salario: ");
 	private JTextField salario = new JTextField();
 	private JLabel labelAnosdeExp = new JLabel("Anos de Experiencia: ");
 	private JTextField anosdeExp = new JTextField();
-	private JLabel labelPreRequisitos = new JLabel("Pré-Requisitos: ");
+	private JLabel labelPreRequisitos = new JLabel("Pre-Requisitos: ");
 	private JTextField preRequisitos = new JTextField();
 	private JLabel labelRemunerado = new JLabel("Remunerado: ");
 	private JRadioButton remunerado1 = new JRadioButton("Sim");
-	private JRadioButton remunerado2 = new JRadioButton("Não");
-	private JLabel labelEstagio = new JLabel("Estágio: ");
+	private JRadioButton remunerado2 = new JRadioButton("Nao");
+	private JLabel labelEstagio = new JLabel("Estagio: ");
 	private JRadioButton estagio1 = new JRadioButton("Sim");
-	private JRadioButton estagio2 = new JRadioButton("Não");
+	private JRadioButton estagio2 = new JRadioButton("Nao");
 	private JRadioButton exp = new JRadioButton("Experiente");
 	private JRadioButton inxp = new JRadioButton("Inexperiente");
 	private JLabel tipoVg = new JLabel("Tipo de Vaga a ser cadastrada:");
@@ -229,7 +229,7 @@ public class TelaInfoVaga implements ActionListener {
 				break;
 				
 			default: 
-				JOptionPane.showMessageDialog(null,"Opção não encontrada!", null, 
+				JOptionPane.showMessageDialog(null,"Opcao nao encontrada!", null, 
 						JOptionPane.ERROR_MESSAGE);
 		
 		}
@@ -330,7 +330,7 @@ public class TelaInfoVaga implements ActionListener {
 				
 			} else {
 				
-				JOptionPane.showMessageDialog(null, "É necessário selecionar um tipo de Vaga!", null, JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "E necessario selecionar um tipo de Vaga!", null, JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 			
