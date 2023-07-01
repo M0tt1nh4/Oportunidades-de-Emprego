@@ -165,4 +165,16 @@ public class ControleDados {
 	    	
     }
     
+    public boolean removerEmpresa(int pos) {
+    	Empresa emp = d.getEmpresa(pos);
+    	
+    	d.removerEmpresa(pos);
+    	
+    	if (emp.equals(d.getEmpresa(pos))) {
+    		return false;
+    	}
+    	
+    	return true;
+    }
+    
 }

@@ -199,6 +199,31 @@ public class Dados {
     	} else empresas[posEmp].setVagaInxp(vg, posVaga);
     		
     }
+    
+    public void removerEmpresa(int pos) {
+    	
+    	System.out.println(pos);
+    	
+    	if (pos == qtdEmpresas-1) {
+    		
+    		empresas[pos] = null;
+    		
+    	} else {
+    		
+    		for (int i = pos; i < qtdEmpresas; i++) {
+    			
+    			empresas[i] = empresas[i+1];
+    			
+    		}
+    		
+    		empresas[qtdEmpresas-1] = null;
+    		
+    	}
+    	
+    	qtdEmpresas--;
+    	
+    }
+    
 }
     
 

@@ -28,6 +28,7 @@ public class TelaInfoEmpresa implements ActionListener {
 	private JLabel qtdVagas = new JLabel();
 	private JButton botaoVagas = new JButton("Vagas");
 	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoExcluir = new JButton("Excluir Empresa");
 	private String[] novosDados = new String[6];
 	private static ControleDados dados;
 	private int posi;
@@ -56,8 +57,10 @@ public class TelaInfoEmpresa implements ActionListener {
 		numero.setBounds(285, 110, 105, 20);
 		labelQtdVagas.setBounds(100, 140, 200, 20);
 		qtdVagas.setBounds(240,140 , 150, 20);
+		
 		botaoVagas.setBounds(250, 200, 130, 30);
 		botaoSalvar.setBounds(110, 200, 130, 30);
+		botaoExcluir.setBounds(180, 240, 130, 30);
 		
 		//determina as informações da empresa
 		if (posi < dados.getQtdEmpresas()) {
@@ -80,12 +83,14 @@ public class TelaInfoEmpresa implements ActionListener {
 		janela.add(qtdVagas);
 		janela.add(botaoVagas);
 		janela.add(botaoSalvar);
+		janela.add(botaoExcluir);
 		
 		janela.setVisible(true);
 		
 		//adiciona o botão editar e Vagas na janela
 		botaoSalvar.addActionListener(this);
 		botaoVagas.addActionListener(this);
+		botaoExcluir.addActionListener(this);
 		
 	}
 		
@@ -95,9 +100,9 @@ public class TelaInfoEmpresa implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
+		boolean save;
+		
 		if (src == botaoSalvar){
-			
-			boolean save;
 			
 			novosDados[0] = String.valueOf(posi);
 			novosDados[1] = cnpj.getText();
@@ -118,10 +123,49 @@ public class TelaInfoEmpresa implements ActionListener {
 			new TelaListaVagas().mostrarVagas(dados, 1, posi);
 			
 		}
+		
+		if (src == botaoExcluir) {
+			
+			save = false;
+			
+			save = dados.removerEmpresa(posi);
+			
+			if (save) {
+				
+				mensagemSucessoExclusao();
+				
+			} else {
+				
+				
+				
+			}
+			
+		}
 	}
 		
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram Cadastrados com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
+	}
+	
+	public void mensagemSucessoExclusao() {
+		JOptionPane.showMessageDialog(null, "A Empresa foi excluida com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+	}
+	
+	public void mensagemErroCadastro() {
+		
+		JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!\n"
+				+ "Pode ter ocorrido um ou mais erros a seguir:\n"
+				+ "1. Nem todos os campos foram preenchidos\n"
+				+ "2. Os campos do CPF e telefone nao possuem somente numeros\n", null,
+				JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+	
+	public void mensagemErroExclusao() {
+		
+		JOptionPane.showMessageDialog(null, "Ocorreu um erro ao exlcuir a Empresa!", null, JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 }

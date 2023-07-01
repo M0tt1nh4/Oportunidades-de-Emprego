@@ -46,6 +46,7 @@ public class TelaInfoVaga implements ActionListener {
 	private JLabel tipoVg = new JLabel("Tipo de Vaga a ser cadastrada:");
 	private JButton botaoContinuar = new JButton("Continuar");
 	private JButton botaoSalvar = new JButton("Salvar");
+	private JButton botaoExcluir = new JButton("Excluir Vaga");
 	private ButtonGroup grupo1 = new ButtonGroup();
 	private ButtonGroup grupo2 = new ButtonGroup();	
 	private ButtonGroup grupo3 = new ButtonGroup();
@@ -106,7 +107,8 @@ public class TelaInfoVaga implements ActionListener {
 				anosdeExp.setBounds(240, 170, 150, 20);
 				preRequisitos.setBounds(240, 200, 150, 20);
 				
-				botaoSalvar.setBounds(180, 230, 130, 30);
+				botaoSalvar.setBounds(250, 230, 130, 30);
+				botaoExcluir.setBounds(110, 230, 130, 30);
 				
 				if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaExp()) {
 					
@@ -133,11 +135,13 @@ public class TelaInfoVaga implements ActionListener {
 				janela.add(anosdeExp);
 				janela.add(preRequisitos);
 				janela.add(botaoSalvar);
+				janela.add(botaoExcluir);
 				
 				
 				janela.setVisible(true);
 				
 				botaoSalvar.addActionListener(this);
+				botaoExcluir.addActionListener(this);
 				
 				break;
 				
@@ -174,7 +178,8 @@ public class TelaInfoVaga implements ActionListener {
 				grupo2.add(estagio1);
 				grupo2.add(estagio2);
 				
-				botaoSalvar.setBounds(180, 230, 130, 30);
+				botaoSalvar.setBounds(250, 230, 130, 30);
+				botaoExcluir.setBounds(110, 230, 130, 30);
 				
 			    if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaInxp()) {
 			    	
@@ -221,10 +226,12 @@ public class TelaInfoVaga implements ActionListener {
 				janela.add(estagio1);
 				janela.add(estagio2);
 				janela.add(botaoSalvar);
+				janela.add(botaoExcluir);
 				
 				janela.setVisible(true);
 				
 				botaoSalvar.addActionListener(this);
+				botaoExcluir.addActionListener(this);
 				
 				break;
 				
@@ -335,6 +342,12 @@ public class TelaInfoVaga implements ActionListener {
 			}
 			
 		}
+		
+		if (src == botaoExcluir) {
+			
+			
+			
+		}
 	}
 	
 	/**
@@ -350,9 +363,9 @@ public class TelaInfoVaga implements ActionListener {
 		JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!\n"
 				+ "Pode ter ocorrido um ou mais erros a seguir:\n"
 				+ "1. Nem todos os campos foram preenchidos\n"
-				+ "2. \n", null,
+				+ "2. Os campos da Carga Horaria, Quantidade,"
+				+ " Salario ou Anos de Experiencia nao sao compostos apenas por numeros\n", null,
 				JOptionPane.INFORMATION_MESSAGE);
-		janela.dispose();
 	}
 	
 
