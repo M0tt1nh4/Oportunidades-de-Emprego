@@ -16,7 +16,7 @@ package modulo;
 public class Empresa {
 	private long CNPJ;
     private String nome;
-    private Telefone telefone = new Telefone();
+    private Telefone telefone ;
     public VagaExperiente[] vagaExp = new VagaExperiente[50];
     public VagaInexperiente[] vagaInxp = new VagaInexperiente[50];
     private int qtdVagaExp;
