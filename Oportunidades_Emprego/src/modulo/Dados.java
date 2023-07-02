@@ -28,8 +28,8 @@ public class Dados {
             
             for (int j = 0; j < i+2; j++) {
             	
-                VagaExperiente Vexp = new VagaExperiente(""+(j+1), (j+1)*10, j+1, (j+1)*1000, j*3, "A ser definido");
-                VagaInexperiente Vinxp = new VagaInexperiente(""+(j+2), (j+2)*10, j+2, (j+2)*1000, false, true);
+                VagaExperiente Vexp = new VagaExperiente("Vaga Exp "+(j+1), (j+1)*10, j+1, (j+1)*1000, j*3, "A ser definido");
+                VagaInexperiente Vinxp = new VagaInexperiente("Vaga Inxp "+(j+2), (j+2)*10, j+2, (j+2)*1000, true, true);
                 
                 empresas[i].setVagaExp(Vexp, j);
                 empresas[i].setVagaInxp(Vinxp, j);
@@ -197,7 +197,13 @@ public class Dados {
     		empresas[posEmp].setQtdVagaInxp(empresas[posEmp].getQtdVagaInxp()+1);
     		
     	} else empresas[posEmp].setVagaInxp(vg, posVaga);
+    	
+    	if (!empresas[posEmp].getVagaInxp(posVaga).getRemunerado()) {
     		
+    		empresas[posEmp].getVagaInxp(posVaga).setSalario(0);
+    		
+    	}
+    	
     }
     
     public void removerEmpresa(int pos) {
