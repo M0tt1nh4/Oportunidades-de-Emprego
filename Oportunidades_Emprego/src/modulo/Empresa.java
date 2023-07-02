@@ -152,7 +152,7 @@ public class Empresa {
         }
 
         // Verificar se todos os dígitos são iguais
-        if (cnpj.matches("(\\d)\\1*")) {
+        if (cnpj.matches("(\\d)\\1")) {
             return false;
         }
 

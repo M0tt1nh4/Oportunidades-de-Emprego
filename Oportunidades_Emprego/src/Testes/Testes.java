@@ -29,6 +29,7 @@ public class Testes {
 		assertFalse ((Telefone.checkTel(valorTelErrado)));
 	}
 	
+	//verifica se a vaga tem sálario ou não
 	@Test
 	public void testeSalarioValido() {
 		String valorSalario ="123";
