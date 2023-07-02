@@ -224,6 +224,48 @@ public class Dados {
     	
     }
     
+    public void removerVaga(int posEmp, int pos, int tipoVg) {
+    	
+    	if (tipoVg == 1) {
+    		
+    		if (pos == empresas[posEmp].getQtdVagaExp() - 1) {
+    			
+    			empresas[posEmp].setVagaExp(null, pos);
+    			
+    		} else {
+    			
+    			for (int i = pos; i < empresas[posEmp].getQtdVagaExp(); i++) {
+    				
+    				empresas[posEmp].setVagaExp(empresas[posEmp].getVagaExp(i+1), i);
+    				
+    			}
+    			
+    		}
+    		
+    		empresas[posEmp].setQtdVagaExp(empresas[posEmp].getQtdVagaExp() - 1);
+    		
+    	} else {
+    		
+    		if (pos == empresas[posEmp].getQtdVagaInxp() - 1) {
+    			
+    			empresas[posEmp].setVagaInxp(null, pos);
+    			
+    		} else {
+    			
+    			for (int i = pos; i < empresas[posEmp].getQtdVagaInxp(); i++) {
+    				
+    				empresas[posEmp].setVagaInxp(empresas[posEmp].getVagaInxp(i+1), i);
+    				
+    			}
+    			
+    		}
+    		
+    		empresas[posEmp].setQtdVagaInxp(empresas[posEmp].getQtdVagaInxp() - 1);
+    		
+    	}
+    	
+    }
+    
 }
     
 

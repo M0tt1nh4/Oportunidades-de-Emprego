@@ -92,7 +92,12 @@ public class Empresa {
     
     public void setVagaExp(VagaExperiente vaga, int pos) {
         vagaExp[pos] = vaga;
-        vagaExp[pos].setEmpresa(this);
+        
+        if (vagaExp[pos] != null) {
+        	
+        	vagaExp[pos].setEmpresa(this);
+        	
+        }
     }
 
     ////get que retorna as Vagas Inexperientes da empresa de acordo com sua posição
@@ -102,7 +107,13 @@ public class Empresa {
     
     public void setVagaInxp(VagaInexperiente vaga, int pos) {
         vagaInxp[pos] = vaga;
-        vagaInxp[pos].setEmpresa(this);
+        
+        if (vagaInxp[pos] != null) {
+        	
+        	vagaInxp[pos].setEmpresa(this);
+        	
+        }
+        
     }
 
     //get que retorna a quantidade de Vagas Experientes.
@@ -146,7 +157,7 @@ public class Empresa {
     
     @Override
     public boolean equals(Object emp) {
-    	if (this.CNPJ == ((Empresa) emp).getCNPJ() && this.nome == ((Empresa) emp).getNome()  && this.telefone == ((Empresa) emp).getTelefone()) {
+    	if (emp != null && this.CNPJ == ((Empresa) emp).getCNPJ() && this.nome == ((Empresa) emp).getNome()  && this.telefone == ((Empresa) emp).getTelefone()) {
     		return true;
     	}
     	else {

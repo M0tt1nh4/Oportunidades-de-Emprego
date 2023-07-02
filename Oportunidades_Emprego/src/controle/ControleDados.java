@@ -177,4 +177,28 @@ public class ControleDados {
     	return true;
     }
     
+    public boolean removerVaga(int posEmp, int pos, int tipoVg) {
+    	
+    	if (tipoVg == 1) {
+    		VagaExperiente vg = d.getEmpresa(posEmp).getVagaExp(pos);
+    		
+    		d.removerVaga(posEmp, pos, tipoVg);
+    		
+    		if (vg.equals(d.getEmpresa(posEmp).getVagaExp(pos)) && vg != null) {
+    			return false;
+    		} else return true;
+    		
+    	} else {
+    		VagaInexperiente vg = d.getEmpresa(posEmp).getVagaInxp(pos);
+    		
+    		d.removerVaga(posEmp, pos, tipoVg);
+    		
+    		if (vg.equals(d.getEmpresa(posEmp).getVagaInxp(pos))) {
+    			return false;
+    		} else return true;
+    		
+    	}
+    	
+    }
+    
 }

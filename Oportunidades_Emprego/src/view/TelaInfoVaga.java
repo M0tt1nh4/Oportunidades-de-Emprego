@@ -107,8 +107,6 @@ public class TelaInfoVaga implements ActionListener {
 				anosdeExp.setBounds(240, 170, 150, 20);
 				preRequisitos.setBounds(240, 200, 150, 20);
 				
-				botaoSalvar.setBounds(250, 230, 130, 30);
-				botaoExcluir.setBounds(110, 230, 130, 30);
 				
 				if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaExp()) {
 					
@@ -118,6 +116,15 @@ public class TelaInfoVaga implements ActionListener {
 					salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getSalario())));
 					anosdeExp.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getAnosdeExp())));
 					preRequisitos.setText(dados.getEmpresa(this.posEmp).getVagaExp(this.posi).getPrerequisito());
+					
+					botaoSalvar.setBounds(250, 230, 130, 30);
+					botaoExcluir.setBounds(110, 230, 130, 30);
+					
+					janela.add(botaoExcluir);
+					
+				} else {
+					
+					botaoSalvar.setBounds(190, 230, 130, 30);
 					
 				}
 				
@@ -135,7 +142,7 @@ public class TelaInfoVaga implements ActionListener {
 				janela.add(anosdeExp);
 				janela.add(preRequisitos);
 				janela.add(botaoSalvar);
-				janela.add(botaoExcluir);
+				
 				
 				
 				janela.setVisible(true);
@@ -178,9 +185,6 @@ public class TelaInfoVaga implements ActionListener {
 				grupo2.add(estagio1);
 				grupo2.add(estagio2);
 				
-				botaoSalvar.setBounds(250, 230, 130, 30);
-				botaoExcluir.setBounds(110, 230, 130, 30);
-				
 			    if (this.posi < dados.getEmpresa(this.posEmp).getQtdVagaInxp()) {
 			    	
 			    	if (dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getRemunerado()) {
@@ -207,6 +211,15 @@ public class TelaInfoVaga implements ActionListener {
 					cargaHoraria.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getCarga())));
 					quantidade.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getQtd())));
 					salario.setText(String.valueOf((dados.getEmpresa(this.posEmp).getVagaInxp(this.posi).getSalario())));
+					
+					botaoSalvar.setBounds(250, 230, 130, 30);
+					botaoExcluir.setBounds(110, 230, 130, 30);
+					
+					janela.add(botaoExcluir);
+			    	
+			    } else {
+			    	
+			    	botaoSalvar.setBounds(190, 230, 130, 30);
 			    	
 			    }
 				
@@ -226,7 +239,6 @@ public class TelaInfoVaga implements ActionListener {
 				janela.add(estagio1);
 				janela.add(estagio2);
 				janela.add(botaoSalvar);
-				janela.add(botaoExcluir);
 				
 				janela.setVisible(true);
 				
@@ -345,8 +357,19 @@ public class TelaInfoVaga implements ActionListener {
 		
 		if (src == botaoExcluir) {
 			
+			boolean exc;
 			
+			exc = dados.removerVaga(posEmp, posi, opc);
 			
+			if (exc) {
+				
+				mensagemSucessoExclusao();
+				
+			} else {
+				
+				mensagemErroExclusao();
+				
+			}
 		}
 	}
 	
@@ -366,6 +389,19 @@ public class TelaInfoVaga implements ActionListener {
 				+ "2. Os campos da Carga Horaria, Quantidade,"
 				+ " Salario ou Anos de Experiencia nao sao compostos apenas por numeros\n", null,
 				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void mensagemSucessoExclusao() {
+		
+		JOptionPane.showMessageDialog(null, "Vaga excluida com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+		
+	}
+	
+	public void mensagemErroExclusao() {
+		
+		JOptionPane.showMessageDialog(null, "Erro ao excluir a Vaga!", null, JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 	
 

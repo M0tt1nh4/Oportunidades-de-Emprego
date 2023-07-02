@@ -56,20 +56,30 @@ public class TelaInfoEmpresa implements ActionListener {
 		ddd.setBounds(240, 110, 40, 20);
 		numero.setBounds(285, 110, 105, 20);
 		labelQtdVagas.setBounds(100, 140, 200, 20);
-		qtdVagas.setBounds(240,140 , 150, 20);
-		
-		botaoVagas.setBounds(250, 200, 130, 30);
-		botaoSalvar.setBounds(110, 200, 130, 30);
-		botaoExcluir.setBounds(180, 240, 130, 30);
+		qtdVagas.setBounds(240,140 , 150, 20);	
 		
 		//determina as informações da empresa
 		if (posi < dados.getQtdEmpresas()) {
+			
 			cnpj.setText(String.valueOf(dados.getEmpresa(posi).getCNPJ()));
 			nome.setText(dados.getEmpresa(posi).getNome());
 			ddd.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getDDD()));
 			numero.setText(String.valueOf(dados.getEmpresa(posi).getTelefone().getNumero()));
 			qtdVagas.setText(String.valueOf(dados.getEmpresa(posi).getQtdVagaExp()+dados.getEmpresa(posi).getQtdVagaInxp()));
-		} else labelQtdVagas.setVisible(false);
+			
+			botaoVagas.setBounds(250, 200, 130, 30);
+			botaoExcluir.setBounds(180, 240, 130, 30);
+			botaoSalvar.setBounds(110, 200, 130, 30);
+			
+			janela.add(botaoExcluir);
+			janela.add(botaoVagas);
+			
+		} else {
+			
+			labelQtdVagas.setVisible(false);
+			botaoSalvar.setBounds(180, 160, 130, 30);
+		
+		}
 		
 		//adiciona todos textos na janela
 		janela.add(labelCNPJ);
@@ -81,9 +91,7 @@ public class TelaInfoEmpresa implements ActionListener {
 		janela.add(ddd);
 		janela.add(numero);
 		janela.add(qtdVagas);
-		janela.add(botaoVagas);
 		janela.add(botaoSalvar);
-		janela.add(botaoExcluir);
 		
 		janela.setVisible(true);
 		
