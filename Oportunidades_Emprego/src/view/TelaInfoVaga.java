@@ -286,7 +286,7 @@ public class TelaInfoVaga implements ActionListener {
 		botaoContinuar.addActionListener(this);
 		
 	}
-	
+
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
 	 */

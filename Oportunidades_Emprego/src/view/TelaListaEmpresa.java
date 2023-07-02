@@ -97,6 +97,7 @@ public class TelaListaEmpresa implements ActionListener, ListSelectionListener {
 	/**
 	 * Método que monstra em qual empresa da lista o usuário clicou e o que vai acontecer na tela
 	 */
+	
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
 		

@@ -93,11 +93,20 @@ public class VagaInexperiente extends Vaga{
     public void setRemunerado(boolean rem) {
         remunerado = rem;
     }
-
+    
     /**
-     * Método toString() da classe Vaga Inexperiente. Constroi uma String contendo o valor de todas as váriaveis da classe Vaga Inexperiente.
-     * @return String
+     * Método que verifica se a vaga tem salario
+     * @param valor		variavel teste
+     * @return
      */
+    
+    public static boolean salario(String valor) {
+    	if(valor.matches("[0 -9]+")){
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
     
     @Override
     public String toString() {

@@ -140,6 +140,29 @@ public class Empresa {
     }
 
     /**
+     * Método que verifica se o CNPJ é valido
+     * @param cnpj	cnps
+     * @return boolean
+     */
+    
+    public static boolean isValidoCNPJ(String cnpj) {
+        // Verificar o tamanho do CNPJ
+        if (cnpj.length() != 14) {
+            return false;
+        }
+
+        // Verificar se todos os dígitos são iguais
+        if (cnpj.matches("(\\d)\\1*")) {
+            return false;
+        }
+
+        else {
+        return true;
+        }
+    }
+        
+
+    /**
      * Método toString() da classe Empresa. Constroi uma String contendo o valor de todas as váriaveis da classe Empresa.
      * @return String
      */
@@ -150,11 +173,7 @@ public class Empresa {
     			"\nQuantidade de empregos oferecidos: "+(getQtdVagaExp()+getQtdVagaInxp());
     }
     
-    /**
-     * Método que retorna true se o objeto Empresa existir, se não existir retorna false, para Empresa existir precisa ter CNPJ, nome e telefone
-     * @return boolean
-     */
-    
+   
     @Override
     public boolean equals(Object emp) {
     	if (emp != null && this.CNPJ == ((Empresa) emp).getCNPJ() && this.nome == ((Empresa) emp).getNome()  && this.telefone == ((Empresa) emp).getTelefone()) {

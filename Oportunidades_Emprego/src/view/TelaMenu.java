@@ -44,7 +44,7 @@ public class TelaMenu implements ActionListener {
 	
 	/**
 	 * Método que monstra na tela menu os botões
-	 * @param args 
+	 * @param args 	Uma string
 	 */
 	
 	public static void main(String[] args) {

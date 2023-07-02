@@ -10,8 +10,8 @@ package modulo;
  */
 
 public class Telefone {
-	public int DDD;
-    public  long numero;
+	private int DDD;
+    private long numero;
 
     /**
      * Método que junta o ddd e o numero formando o telefone.
@@ -42,10 +42,23 @@ public class Telefone {
         this.numero = numero;
     }
 
+   
     /**
-     *  Método toString() da classe Telefone. Constroi uma String contendo o valor de todas as váriaveis da classe Telefone.
-     *  @return String 
+     * Método que verifica o telefone
+     * @param valor		Váriavel que contem o valor digitado
+     * @return boolean
      */
+    
+    public static boolean checkTel (String valor) {
+    	if (valor.matches("[0 -9]+")) {
+    		return true ;
+    	}
+    	
+    	else {
+    		return false ;
+        }
+    }
+    
     
     @Override
     public String toString() {

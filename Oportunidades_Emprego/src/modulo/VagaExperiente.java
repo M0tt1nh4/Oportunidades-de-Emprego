@@ -94,11 +94,6 @@ public class VagaExperiente extends Vaga{
         prerequisito = prereq;
     }
 
-    /**
-     * Método toString() da classe Vaga Experiente. Constroi uma String contendo o valor de todas as váriaveis da classe Vaga Experiente.
-     * @return String
-     */
-    
     @Override
     public String toString() {
         return "Funcao: "+funcao+

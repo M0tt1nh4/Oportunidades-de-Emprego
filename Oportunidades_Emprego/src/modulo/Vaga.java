@@ -65,6 +65,7 @@ public abstract class Vaga {
     	this.emp=emp;
     }
     
+   
     /**
      * Método que verifica se tem uma vaga, retorna true se tiver uma vaga e false se não tiver.
      * @return boolean

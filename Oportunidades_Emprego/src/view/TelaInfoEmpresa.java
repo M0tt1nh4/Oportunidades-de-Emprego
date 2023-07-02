@@ -139,7 +139,7 @@ public class TelaInfoEmpresa implements ActionListener {
 			
 		}
 		
-		//Oque acontece quando o usuário clica no botão excluir]
+		//Oque acontece quando o usuário clica no botão excluir
 		
 		if (src == botaoExcluir) {
 			
