@@ -97,7 +97,7 @@ public class VagaInexperiente extends Vaga{
     /**
      * Método que verifica se a vaga tem salario
      * @param valor		variavel teste
-     * @return
+     * @return boolean
      */
     
     public static boolean salario(String valor) {
