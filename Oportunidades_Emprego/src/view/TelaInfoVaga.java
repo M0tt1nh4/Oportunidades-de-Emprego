@@ -254,6 +254,12 @@ public class TelaInfoVaga implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Método de Cadastro da vaga
+	 * @param d			Chama os dados da Controle Dados
+	 * @param posEmp	Posição da Empresa
+	 */
+	
 	public void tipoVagaCadastro(ControleDados d, int posEmp) {
 		
 		dados = d;
@@ -335,6 +341,7 @@ public class TelaInfoVaga implements ActionListener {
 			
 		}
 		
+		//botão que continua
 		if (src == botaoContinuar) {
 			
 			if (exp.isSelected()) {
@@ -355,6 +362,7 @@ public class TelaInfoVaga implements ActionListener {
 			
 		}
 		
+		//botão que exclui
 		if (src == botaoExcluir) {
 			
 			boolean exc;
@@ -382,6 +390,10 @@ public class TelaInfoVaga implements ActionListener {
 		janela.dispose();
 	}
 	
+	/**
+	 * Método que monstra uma mensagem de Erro se der erro no cadastro
+	 */
+	
 	public void mensagemErroCadastro() {
 		JOptionPane.showMessageDialog(null, "Erro ao salvar os dados!\n"
 				+ "Pode ter ocorrido um ou mais erros a seguir:\n"
@@ -391,12 +403,20 @@ public class TelaInfoVaga implements ActionListener {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * Método que monstra uma mensagem de Sucesso se a empresa for excluida
+	 */
+	
 	public void mensagemSucessoExclusao() {
 		
 		JOptionPane.showMessageDialog(null, "Vaga excluida com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 		
 	}
+	
+	/**
+	 * Método que monstra uma mensagem caso ocorra erro de exclusão
+	 */
 	
 	public void mensagemErroExclusao() {
 		

@@ -28,7 +28,10 @@ public class Dados {
             
             for (int j = 0; j < i+2; j++) {
             	
+            	//cria vagas experientes
                 VagaExperiente Vexp = new VagaExperiente("Vaga Exp "+(j+1), (j+1)*10, j+1, (j+1)*1000, j*3, "A ser definido");
+                
+                //cria vagas inexperientes
                 VagaInexperiente Vinxp = new VagaInexperiente("Vaga Inxp "+(j+2), (j+2)*10, j+2, (j+2)*1000, true, true);
                 
                 empresas[i].setVagaExp(Vexp, j);
@@ -189,6 +192,7 @@ public class Dados {
      * @param posEmp		posição da empresa
      * @param vg			vaga nova editada
      */
+    
     public void inserirEditarVagaInxp(int posVaga, int posEmp, VagaInexperiente vg) {
     	
     	if (posVaga == empresas[posEmp].getQtdVagaTotal()) {
@@ -206,9 +210,12 @@ public class Dados {
     	
     }
     
+    /**
+     * Método que exclui uma Empresa
+     * @param pos	posição da Empresa
+     */
+    
     public void removerEmpresa(int pos) {
-    	
-    	System.out.println(pos);
     	
     	if (pos == qtdEmpresas-1) {
     		
@@ -229,6 +236,13 @@ public class Dados {
     	qtdEmpresas--;
     	
     }
+    
+    /**
+     * Método que exclui uma vaga 
+     * @param posEmp		posição da Empresa
+     * @param pos			posição da vaga
+     * @param tipoVg		tipo de vaga
+     */
     
     public void removerVaga(int posEmp, int pos, int tipoVg) {
     	

@@ -3,13 +3,14 @@ package controle;
 import modulo.*;
 
 /**
- * Classe que Controle os dados
+ * Classe que Controla os dados
  * @author Felipe Motta ,Giovana Barbosa 
  * @since 2023
  * @version 1.1
  */
 
 public class ControleDados {
+	//Cria uma váriavel que armazena os dados da Controle Dados
     private Dados d = new Dados();
 
     /**
@@ -108,9 +109,13 @@ public class ControleDados {
      */
     
     public boolean inserirEditarEmpresa(String[] novosDados) {
+    	//retorna false se não for inseridos nenhum dado
+    	
         if (!novosDados[1].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[4].matches("[0-9]+")) {
             return false;
         } else {
+        	//retorna true se for inseridos novos dados
+        	
             Telefone newTel = new Telefone(Integer.parseInt(novosDados[3]), Integer.parseInt(novosDados[4]));
             Empresa emp = new Empresa(Long.parseLong(novosDados[1]), novosDados[2], newTel, 0, 0);
             d.inserirEditarEmpresa(Integer.parseInt(novosDados[0]), emp);
@@ -136,10 +141,13 @@ public class ControleDados {
 	    }
 	    
 	    if (op == 1) {
+	    	//retorna false se não for inseridos nenhum dado
 	    	
 	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !novosDados[5].matches("[0-9]+")) {
     			return false;
     		} else {
+    			//retorna true se for inseridos novos dados
+    			
     			VagaExperiente vg = new VagaExperiente(novosDados[1], Integer.parseInt(novosDados[2]), Integer.parseInt(novosDados[3]), dbl,
     					Integer.parseInt(novosDados[5]), novosDados[6]);
     			
@@ -150,9 +158,12 @@ public class ControleDados {
     		
 	    } else {
 	    	
+	    	//retorna false se não for inseridos nenhum dado
 	    	if (!novosDados[2].matches("[0-9]+") || !novosDados[3].matches("[0-9]+") || !(novosDados[8] == "true" || novosDados[8] == "false")) {
     			return false;
     		} else {
+    			    //retorna true se for inseridos novos dados
+    			
         			VagaInexperiente vg = new VagaInexperiente(novosDados[1], Integer.parseInt(novosDados[2]), Integer.parseInt(novosDados[3]), dbl,
         					Boolean.parseBoolean(novosDados[7]), Boolean.parseBoolean(novosDados[8]));
         			
@@ -164,6 +175,12 @@ public class ControleDados {
 	    }
 	    	
     }
+    
+    /**
+     * Método que remove uma empresa
+     * @param pos	posição da empresa
+     * @return boolean
+     */
     
     public boolean removerEmpresa(int pos) {
     	Empresa emp = d.getEmpresa(pos);
@@ -177,7 +194,17 @@ public class ControleDados {
     	return true;
     }
     
+    /**
+     * Método que remove uma vaga 
+     * @param posEmp		posição da empresa
+     * @param pos			posição da vaga 
+     * @param tipoVg		Se a vaga é experiente ou inexperiente 
+     * @return boolean
+     */
+    
     public boolean removerVaga(int posEmp, int pos, int tipoVg) {
+    	
+    	//Se a vaga é experiente
     	
     	if (tipoVg == 1) {
     		VagaExperiente vg = d.getEmpresa(posEmp).getVagaExp(pos);
@@ -189,6 +216,8 @@ public class ControleDados {
     		} else return true;
     		
     	} else {
+    		//se a vaga é inexperiente
+    		
     		VagaInexperiente vg = d.getEmpresa(posEmp).getVagaInxp(pos);
     		
     		d.removerVaga(posEmp, pos, tipoVg);

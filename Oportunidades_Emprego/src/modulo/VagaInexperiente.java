@@ -98,6 +98,7 @@ public class VagaInexperiente extends Vaga{
      * Método toString() da classe Vaga Inexperiente. Constroi uma String contendo o valor de todas as váriaveis da classe Vaga Inexperiente.
      * @return String
      */
+    
     @Override
     public String toString() {
         return "Funcao: "+funcao+

@@ -13,10 +13,11 @@ package modulo;
  * @see qtdVagaExp		Quantidade de vagas experientes da empresa
  * @see qtdVagaInxp		Quantidade de vagas inexperientes da empresa
  */
+
 public class Empresa {
 	private long CNPJ;
     private String nome;
-    private Telefone telefone ;
+    private Telefone telefone;
     public VagaExperiente[] vagaExp = new VagaExperiente[50];
     public VagaInexperiente[] vagaInxp = new VagaInexperiente[50];
     private int qtdVagaExp;
@@ -30,6 +31,7 @@ public class Empresa {
      * @param qtdVagasexp	  quantidade de vagas experientes na empresa.
      * @param qtdVagasinxp    quantidade de vagas inexperientes na empresa.
      */
+    
     public Empresa(long cnpj, String nome, Telefone telefone, int qtdVagasexp, int qtdVagasinxp) {
         CNPJ = cnpj;
         this.nome = nome;

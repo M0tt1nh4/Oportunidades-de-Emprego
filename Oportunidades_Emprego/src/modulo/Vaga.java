@@ -69,6 +69,7 @@ public abstract class Vaga {
      * Método que verifica se tem uma vaga, retorna true se tiver uma vaga e false se não tiver.
      * @return boolean
      */
+    
     public boolean equals(Object vg) {
     	if (vg != null && this.funcao == ((Vaga) vg).getFuncao() && this.qtd == ((Vaga) vg).getQtd()  && this.carga == ((Vaga) vg).getCarga() &&
     			this.salario == ((Vaga) vg).getSalario() && this.emp == ((Vaga) vg).getEmpresa()) {

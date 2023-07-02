@@ -16,6 +16,7 @@ public class VagaExperiente extends Vaga{
     /**
      * Método que chama o contrutor da classe vaga
      */
+    
     public VagaExperiente() {
         super();
     }
@@ -29,6 +30,7 @@ public class VagaExperiente extends Vaga{
      * @param anos			Anos de Experiência que a vaga exige
      * @param Prerequisito  Pré Requisito que a vaga exige
      */
+    
     public VagaExperiente(String funcao, int carga, int qtd, double salario, int anos, String Prerequisito){
         this.funcao = funcao;
         this.qtd = qtd;
@@ -96,6 +98,7 @@ public class VagaExperiente extends Vaga{
      * Método toString() da classe Vaga Experiente. Constroi uma String contendo o valor de todas as váriaveis da classe Vaga Experiente.
      * @return String
      */
+    
     @Override
     public String toString() {
         return "Funcao: "+funcao+

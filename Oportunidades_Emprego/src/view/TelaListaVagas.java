@@ -107,6 +107,7 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
 	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
@@ -187,6 +188,8 @@ public class TelaListaVagas implements ActionListener, ListSelectionListener {
 			}
 			
 		}
+		
+		//se o usuário clicar nesse botão cadastra uma vaga
 		
 		if (src == botaoCadastrarVaga) {
 			

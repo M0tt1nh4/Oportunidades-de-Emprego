@@ -10,7 +10,11 @@ import modulo.*;
  */
 
 public class ControleEmpresa {
+	// vetor da Empresa
+	
 	private Empresa[] empresas ;
+	
+	//inteiro da quantidade de empresa
 	private int qtdEmp ;
 	
 	/**
@@ -55,10 +59,13 @@ public class ControleEmpresa {
 	 * @return String
 	 */
 	public String[] buscaEmpresa(String funcao) {
+		//vetor que vai receber as Empresas pesquisadas
+		
         String [] a = new String[qtdEmp];
         int x = 0;
         for (int i = 0; i < qtdEmp; i++) {	
         	
+        		//verifica se o nome da empresa é igual o nome pesquisado
                if (empresas[i].getNome().equals(funcao)) {
                    a[x] = funcao;
                    x++;

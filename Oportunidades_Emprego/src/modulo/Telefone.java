@@ -8,9 +8,10 @@ package modulo;
  * @see DDD			inteiro do ddd do telefone
  * @see numero 		numero do telefone
  */
+
 public class Telefone {
-	private int DDD;
-    private long numero;
+	public int DDD;
+    public  long numero;
 
     /**
      * Método que junta o ddd e o numero formando o telefone.
@@ -45,6 +46,7 @@ public class Telefone {
      *  Método toString() da classe Telefone. Constroi uma String contendo o valor de todas as váriaveis da classe Telefone.
      *  @return String 
      */
+    
     @Override
     public String toString() {
         return "DDD: "+DDD+"\nNumero: "+numero;

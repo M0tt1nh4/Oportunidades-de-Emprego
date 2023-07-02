@@ -140,12 +140,16 @@ public class ControleVagas {
 	 * @param funcao	função é a vaga que o usuário pesquisou
 	 * @return String
 	 */
+	
 	public String[] buscaVaga(String funcao) {
+		//vetor que vai receber as vagas experiente pesquisadas
+		
         String [] a = new String[qtdVagas];
         int x = 0;
         
         for (int i = 0; i < qtdexp; i++) {	
         	
+        		//verifica se a vaga é igual a vaga experiente pesquisada 
                if (exp[i].getFuncao().equals(funcao)) {
                    a[x] = funcao;
                    x++;
@@ -153,8 +157,10 @@ public class ControleVagas {
                
             }
           
+      //vetor que vai receber as vagas inexperiente pesquisadas
         for (int i = 0; i < qtdinexp; i++) {
         	
+        		//verifica se a vaga é igual a vaga inexperiente pesquisada 
                 if(inexp[i].getFuncao().equals(funcao)) {
                     a[x] = funcao;
                     x++;
@@ -164,6 +170,12 @@ public class ControleVagas {
            
         return a;
     }
+	
+	/**
+	 * Método que busca vaga por posição
+	 * @param funcao 	função é a vaga que o usuário pesquisou
+	 * @return
+	 */
 	
 	public int[] buscaPosVg(String funcao) {
 		int[] pos = new int[qtdVagas+1];

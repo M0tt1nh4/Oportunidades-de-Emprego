@@ -105,10 +105,13 @@ public class TelaInfoEmpresa implements ActionListener {
 	/**
 	 * Método que monstra em que o usuário clicou e determina o que vai acontecer na tela 
 	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		
 		boolean save;
+		
+		//Oque acontece quando o usuário clica no botão salvar
 		
 		if (src == botaoSalvar){
 			
@@ -119,11 +122,15 @@ public class TelaInfoEmpresa implements ActionListener {
 			novosDados[4] = numero.getText();
 			novosDados[5] = qtdVagas.getText();
 			
+			//chama a função inserir e editar empresa
+			
 			save = dados.inserirEditarEmpresa(novosDados);
 			
 			if (save) mensagemSucessoCadastro();
 			
 		}
+		
+		//Oque acontece quando o usuário clica no botão vagas
 		
 		if (src == botaoVagas){
 			
@@ -131,6 +138,8 @@ public class TelaInfoEmpresa implements ActionListener {
 			new TelaListaVagas().mostrarVagas(dados, 1, posi);
 			
 		}
+		
+		//Oque acontece quando o usuário clica no botão excluir]
 		
 		if (src == botaoExcluir) {
 			
@@ -151,15 +160,27 @@ public class TelaInfoEmpresa implements ActionListener {
 		}
 	}
 		
+	/**
+	 * Método que monstra uma mensagem de Sucesso se os dados forem cadastrados
+	 */
+	
 	public void mensagemSucessoCadastro() {
 		JOptionPane.showMessageDialog(null, "Os dados foram Cadastrados com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
 	
+	/**
+	 * Método que monstra uma mensagem de Sucesso se a empresa for excluida
+	 */
+	
 	public void mensagemSucessoExclusao() {
 		JOptionPane.showMessageDialog(null, "A Empresa foi excluida com sucesso!", null, JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
 	}
+	
+	/**
+	 * Método que monstra uma mensagem de Erro se der erro no cadastro
+	 */
 	
 	public void mensagemErroCadastro() {
 		
@@ -170,6 +191,10 @@ public class TelaInfoEmpresa implements ActionListener {
 				JOptionPane.INFORMATION_MESSAGE);
 		
 	}
+	
+	/**
+	 * Método que monstra uma mensagem caso ocorra erro de exclusão
+	 */
 	
 	public void mensagemErroExclusao() {
 		
